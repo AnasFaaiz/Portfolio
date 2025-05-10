@@ -1,0 +1,9 @@
+Completed Tasks:
+1. Worked on basic skeleton for the website.
+
+Next Tasks:
+1.Start working on Homepage and designing it.
+2. Repeat this step on other pages as well.
+
+Future Implementation:
+1. Thinks of a way to implement AI assisstent if possible.
