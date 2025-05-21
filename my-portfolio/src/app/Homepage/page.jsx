@@ -1,5 +1,6 @@
-import Navbar from "@/app/components/Navbar";
+import Navbar from "@/app/components/layout/Navbar";
 import Image from "next/image";
+import SkillSection from "@/app/components/features/Homepage/Skill";
 
 const Homepage = () => {
     return (
@@ -36,12 +37,12 @@ const Homepage = () => {
                             I am a passionate Full Stack Developer with a keen interest in building innovative solutions. I love to explore new technologies and apply them to real-world problems. </p>
 
                         {/* Tagling */}
-                        <div>
-                            <hr />
+                        <div className="space-y-3">
+                            <hr className="border-gray-700" />
                             <p className="text-gray-400 py-3">
-                                <center>"If you don’t take risks, you can’t create a future!"</center>
+                                "If you don’t take risks, you can’t create a future!"
                             </p>
-                            <hr />
+                            <hr className="border-gray-700"/>
                         </div>
 
                         {/* Call-to-Action Buttons */}
@@ -55,6 +56,7 @@ const Homepage = () => {
                         </div>
                     </div>
                 </section>
+                <SkillSection />
             </main>
         </div>
     );
