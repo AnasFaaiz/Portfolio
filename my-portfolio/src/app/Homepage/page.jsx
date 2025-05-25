@@ -1,6 +1,7 @@
 import Navbar from "@/app/components/layout/Navbar";
 import Image from "next/image";
 import SkillSection from "@/app/components/features/Homepage/Skill";
+import ProjectSection from "../components/features/Homepage/Projects";
 
 const Homepage = () => {
     return (
@@ -57,6 +58,7 @@ const Homepage = () => {
                     </div>
                 </section>
                 <SkillSection />
+                <ProjectSection />
             </main>
         </div>
     );
