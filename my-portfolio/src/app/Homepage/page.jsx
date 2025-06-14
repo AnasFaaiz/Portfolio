@@ -2,6 +2,9 @@ import Navbar from "@/app/components/layout/Navbar";
 import Image from "next/image";
 import SkillSection from "@/app/components/features/Homepage/Skill";
 import ProjectSection from "../components/features/Homepage/Projects";
+import BlogsLatest from "../components/features/Homepage/blogs.jsx";
+import Certifications from "../components/features/Homepage/certifications.jsx";
+import ContactPage from "../Contact/page.jsx";
 
 const Homepage = () => {
     return (
@@ -57,9 +60,12 @@ const Homepage = () => {
                         </div>
                     </div>
                 </section>
-                <SkillSection />
+	        <SkillSection /> 
                 <ProjectSection />
-            </main>
+		<BlogsLatest />
+		<Certifications />
+		<ContactPage />
+	    </main>
         </div>
     );
 };

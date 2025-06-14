@@ -1,41 +1,9 @@
 "use client"
 import Image from 'next/image';
 import Link from 'next/link';
-
-const featuredProjects = [
-    {
-        id: 1,
-        title: "E-Commerce Platform",
-        description: "A full-stack e-commerce solution built with Next.js, featuring user authentication, payment integration, and admin dashboard.",
-        image: "/projects/ecommerce.jpg",
-        technologies: ["Next.js", "React", "Node.js", "MongoDB", "Stripe"],
-        liveUrl: "https://example-ecommerce.com",
-        githubUrl: "https://github.com/username/ecommerce-project",
-        featured: true
-    },
-    {
-        id: 2,
-        title: "Task Management App",
-        description: "A collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-        image: "/projects/taskmanager.jpg",
-        technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
-        liveUrl: "https://example-taskmanager.com",
-        githubUrl: "https://github.com/username/task-manager",
-        featured: true
-    },
-    {
-        id: 3,
-        title: "Weather Dashboard",
-        description: "A responsive weather dashboard that provides real-time weather data, forecasts, and interactive maps with location-based services.",
-        image: "/projects/weather.jpg",
-        technologies: ["Vue.js", "JavaScript", "Weather API", "Chart.js"],
-        liveUrl: "https://example-weather.com",
-        githubUrl: "https://github.com/username/weather-dashboard",
-        featured: true
-    }
-];
-
+import { featuredProjects as projects } from '../../../data/projects.jsx';
 const ProjectCard = ({ project }) => (
+
     <div className="group relative bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl overflow-hidden border border-gray-700/50 hover:border-blue-500/50 transition-all duration-500 transform hover:scale-105">
         {/* Project Image */}
         <div className="relative h-48 overflow-hidden">
@@ -109,7 +77,8 @@ const ProjectCard = ({ project }) => (
 );
 
 const ProjectSection = () => {
-    return (
+    const featuredProjects = projects.filter((project) => project.featured);
+	return (
         <section className="py-16">
             <div className="max-w-6xl mx-auto px-4">
                 {/* Section Header */}
