@@ -1,23 +1,28 @@
 "use client";
-import React from "react";
+import Image from "next/image";
 import { Mail, User, Phone } from "lucide-react";
-import { motion } from "framer-motion"; // Optional: Add framer-motion for animation
+import { motion } from "framer-motion";
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen bg-gradient-to-br from-gray-950 via-black to-gray-900 px-4 py-16 flex items-center justify-center">
+    <main className="relative px-4 py-8 bg-gradient-to-br from-gray-950 via-black to-gray-900 overflow-hidden flex items-center justify-center rounded-3xl">
+      {/* Background glow blobs */}
+      <div className="absolute top-0 left-0 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl animate-pulse z-0" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse z-0" />
+
+      {/* Main container */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="w-full max-w-5xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-6 sm:p-10 md:p-14 space-y-10 text-white"
+        className="relative z-10 w-full max-w-6xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-6 sm:p-10 md:p-14 space-y-12 text-white"
       >
         <h1 className="text-4xl md:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 drop-shadow-lg">
           Get in Touch
         </h1>
 
-        {/* Contact Details */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {/* Contact Info */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <ContactItem
             icon={<User className="text-purple-300 w-6 h-6" />}
             title="Name"
@@ -36,8 +41,8 @@ export default function ContactPage() {
           />
         </div>
 
-        {/* Social Icons */}
-        <div className="flex justify-center flex-wrap gap-5 pt-6">
+        {/* Social Links */}
+        <div className="flex justify-center flex-wrap gap-6 pt-6">
           <SocialIcon
             imgSrc="/skills/discord.svg"
             alt="Discord"
@@ -64,12 +69,12 @@ export default function ContactPage() {
   );
 }
 
-// Contact Card
+// Contact card
 function ContactItem({ icon, title, value, link }) {
   return (
     <motion.div
       whileHover={{ scale: 1.03 }}
-      className="flex items-start gap-4 p-5 bg-gray-800/40 rounded-xl hover:bg-gray-800 transition duration-300 shadow-md h-full"
+      className="flex items-start gap-4 p-5 bg-white/5 rounded-xl hover:bg-white/10 border border-white/10 transition duration-300 shadow-md h-full"
     >
       <div className="w-12 h-12 flex items-center justify-center bg-gray-700 rounded-full shadow-inner shrink-0">
         {icon}
@@ -93,7 +98,7 @@ function ContactItem({ icon, title, value, link }) {
   );
 }
 
-// Social Media Button
+// Social icon button
 function SocialIcon({ imgSrc, alt, link }) {
   return (
     <motion.a
@@ -101,12 +106,14 @@ function SocialIcon({ imgSrc, alt, link }) {
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="rounded-full bg-gray-800 p-3 hover:bg-gradient-to-br from-purple-500 to-blue-500 shadow-md"
+      className="rounded-full bg-white/5 p-3 hover:bg-gradient-to-br from-purple-500 to-blue-500 transition-all duration-300 shadow-md border border-white/10"
     >
-      <img
+      <Image
         src={imgSrc}
         alt={alt}
-        className="w-6 h-6 md:w-7 md:h-7 transition-transform duration-300"
+        width={28}
+        height={28}
+        className="object-contain"
       />
     </motion.a>
   );
