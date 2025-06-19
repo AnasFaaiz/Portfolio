@@ -2,12 +2,12 @@
 
 import Navbar from "@/app/components/layout/Navbar";
 import Image from "next/image";
-import SkillSection from "@/app/components/features/Homepage/Skill";
 import ProjectSection from "../components/features/Homepage/Projects";
 import BlogsLatest from "../components/features/Homepage/blogs.jsx";
 import Certifications from "../components/features/Homepage/certifications.jsx";
 import ContactPage from "../Contact/page.jsx";
 import { motion } from "framer-motion";
+import CosmicSkillTree from "../components/features/Homepage/Skill.jsx";
 
 const Homepage = () => {
   return (
@@ -31,7 +31,7 @@ const Homepage = () => {
               className="w-64 h-64 relative rounded-full overflow-hidden border-4 border-blue-500 shadow-lg"
             >
               <Image
-                src="/profile.jpg"
+                src="/profile.png"
                 alt="Anas Faaiz"
                 fill
                 className="object-cover"
@@ -79,7 +79,7 @@ const Homepage = () => {
 
           {/* Skills Section */}
           <section className="scroll-mt-20" id="skills">
-            <SkillSection />
+            <CosmicSkillTree />
           </section>
 
           {/* Projects Section */}

@@ -1,103 +1,132 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
-import skills from '../../../data/skills.jsx';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
+import {skillMatrix} from '../../../data/skills';
 
-const categories = ['All', 'Programming', 'Frontend', 'Backend', 'Database', 'DevOps', 'Testing', 'Others'];
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } }
+// Map categories to specific Tailwind CSS classes for consistent styling
+const categoryStyles = {
+  Frontend: 'border-blue-500/80 bg-blue-900/20',
+  Backend: 'border-green-500/80 bg-green-900/20',
+  Database: 'border-purple-500/80 bg-purple-900/20',
+  DevOps: 'border-orange-500/80 bg-orange-900/20',
+  Testing: 'border-yellow-500/80 bg-yellow-900/20',
 };
 
-const SkillCard = ({ name, image }) => (
-  <motion.div
-    variants={fadeUp}
-    whileHover={{ scale: 1.1 }}
-    className="flex flex-col items-center group transition-all"
-  >
-    <div className="relative w-12 h-12">
-      <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-md opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:scale-110" />
-      <div className="absolute inset-0 bg-[#1E2330] rounded-md border border-white/10 group-hover:border-blue-500/50 transition duration-300">
-        <div className="relative w-full h-full p-1.5">
-          <Image
-            src={image}
-            alt={`${name} logo`}
-            fill
-            sizes="40px"
-            className="object-contain p-0.5"
-          />
+// --- Sub-Components ---
+
+// The info panel that displays details of the hovered skill
+const InfoPanel = ({ skill }) => {
+  if (!skill) {
+    return (
+      <div className="flex items-center justify-center h-full text-center text-gray-400 p-8">
+        <p>Hover over a skill to see details</p>
+      </div>
+    );
+  }
+
+  return (
+    <div className="p-6 md:p-8">
+      <div className="flex items-center gap-4 mb-4">
+        <div className="relative w-12 h-12">
+            <img src={skill.icon} alt={skill.name} className="w-full h-full object-contain" />
+        </div>
+        <div>
+            <h3 className="text-xl font-bold text-white">{skill.name}</h3>
+            <p className="text-sm text-gray-400">{skill.category}</p>
+        </div>
+      </div>
+      <p className="text-gray-300 mb-4">{skill.description}</p>
+      <div className="flex items-center gap-2">
+        <span className="font-semibold text-gray-400">Proficiency:</span>
+        <div className="w-full bg-gray-700 rounded-full h-2.5">
+          <div
+            className="bg-gradient-to-r from-blue-500 to-purple-500 h-2.5 rounded-full"
+            style={{ width: skill.level === 'Advanced' ? '90%' : skill.level === 'Intermediate' ? '65%' : '40%' }}
+          ></div>
         </div>
       </div>
     </div>
-    <p className="mt-1 text-[10px] text-gray-400 group-hover:text-blue-400 transition-colors duration-300 text-center">
-      {name}
-    </p>
-  </motion.div>
-);
-
-const SkillSection = () => {
-  const [activeCategory, setActiveCategory] = useState('All');
-
-  const filteredSkills =
-    activeCategory === 'All'
-      ? skills
-      : skills.filter(skill => skill.category === activeCategory);
-
-  return (
-    <main className="relative px-4 py-8 bg-gradient-to-br from-gray-950 via-black to-gray-900 overflow-hidden flex justify-center rounded-3xl">
-
-{/* Glow blobs */}
-      <div className="absolute top-0 left-0 w-80 h-80 bg-blue-600/20 rounded-full blur-3xl animate-pulse z-0" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse z-0" />
-
-      <motion.div
-        initial="hidden"
-        whileInView="show"
-        viewport={{ once: true }}
-        variants={fadeUp}
-        className="relative z-10 w-full max-w-7xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-6 sm:p-10 md:p-14 space-y-12 text-white"
-      >
-        {/* Title */}
-        <h2 className="text-4xl md:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 drop-shadow-lg">
-          Skills & Technologies
-        </h2>
-
-        {/* Category Filters */}
-        <motion.div
-          variants={fadeUp}
-          className="flex gap-2 overflow-x-auto scrollbar-hide mb-8 justify-center"
-        >
-          {categories.map(cat => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`whitespace-nowrap text-sm px-4 py-1 rounded-full border transition ${
-                activeCategory === cat
-                  ? 'bg-blue-600 text-white border-blue-500'
-                  : 'bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </motion.div>
-
-        {/* Skills Grid */}
-        <motion.div
-          variants={fadeUp}
-          className="grid grid-cols-4 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10 gap-4"
-        >
-          {filteredSkills.map((skill, index) => (
-            <SkillCard key={index} {...skill} />
-          ))}
-        </motion.div>
-      </motion.div>
-    </main>
   );
 };
 
-export default SkillSection;
 
+// --- Main Component ---
+
+export default function SkillMatrix() {
+  const [hoveredSkill, setHoveredSkill] = useState(null);
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  const tileVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 100 } },
+  };
+
+  return (
+    <main className="relative px-4 py-8 bg-gradient-to-br from-gray-950 via-black to-gray-900 overflow-hidden flex justify-center rounded-3xl">
+      <div className="relative z-10 w-full max-w-7xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-6 sm:p-10 space-y-8">
+        <motion.h2
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="text-4xl md:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 drop-shadow-lg"
+        >
+          My Developer Toolkit
+        </motion.h2>
+
+        <div className="grid grid-cols-1 md:grid-cols-[2fr,1fr] gap-8">
+            {/* Skills Grid */}
+            <motion.div
+              className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-7 gap-4"
+              onMouseLeave={() => setHoveredSkill(null)}
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
+              {skillMatrix.map((skill) => (
+                <motion.div
+                  key={skill.name}
+                  className={`aspect-square p-3 rounded-lg border flex items-center justify-center transition-all duration-300 cursor-pointer group ${categoryStyles[skill.category] || 'border-gray-600'}`}
+                  onMouseEnter={() => setHoveredSkill(skill)}
+                  variants={tileVariants}
+                  whileHover={{
+                    scale: 1.1,
+                    boxShadow: '0px 0px 20px rgba(100, 150, 255, 0.3)',
+                    zIndex: 10,
+                  }}
+                >
+                    <div className="relative w-full h-full">
+                        <img src={skill.icon} alt={`${skill.name} logo`} className="w-full h-full object-contain p-2 grayscale group-hover:grayscale-0 transition-all duration-300" />
+                    </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* Information Panel */}
+            <div className="relative min-h-[250px] bg-gray-900/40 rounded-lg border border-gray-700/50 shadow-inner">
+                 <AnimatePresence mode="wait">
+                    <motion.div
+                        key={hoveredSkill ? hoveredSkill.name : 'empty'}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute inset-0"
+                    >
+                        <InfoPanel skill={hoveredSkill} />
+                    </motion.div>
+                 </AnimatePresence>
+            </div>
+        </div>
+      </div>
+    </main>
+  );
+}
