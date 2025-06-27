@@ -67,12 +67,16 @@ const Homepage = () => {
               </div>
 
               <div className="flex gap-4 justify-center md:justify-start pt-4">
-                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition-all">
-                  Download CV
-                </button>
-                <button className="border border-blue-600 text-blue-400 hover:bg-blue-600/10 px-6 py-2 rounded-md transition-all">
-                  Contact Me
-                </button>
+                <a href="/Anas_Faaiz_Resume.pdf" download="Syed Anas Faaiz - Resume.pdf">
+		  <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition-all">
+                    Download CV
+                  </button>
+		</a>
+		<a href="#contact">
+                  <button className="border border-blue-600 text-blue-400 hover:bg-blue-600/10 px-6 py-2 rounded-md transition-all">
+                    Contact Me
+                  </button>
+		</a>
               </div>
             </motion.div>
           </section>

@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { Mail, User, Phone } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -13,7 +12,8 @@ export default function ContactPage() {
       {/* Main container */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
         transition={{ duration: 0.6 }}
         className="relative z-10 w-full max-w-6xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-6 sm:p-10 md:p-14 space-y-12 text-white"
       >
@@ -44,22 +44,22 @@ export default function ContactPage() {
         {/* Social Links */}
         <div className="flex justify-center flex-wrap gap-6 pt-6">
           <SocialIcon
-            imgSrc="/skills/discord.svg"
+            imgSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discord/discord-original.svg"
             alt="Discord"
             link="https://discord.com/users/anasfaaiz"
           />
           <SocialIcon
-            imgSrc="/skills/linkedin.svg"
+            imgSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
             alt="LinkedIn"
             link="https://linkedin.com/in/anasfaaiz"
           />
           <SocialIcon
-            imgSrc="/skills/twitter.svg"
-            alt="Twitter"
+            imgSrc="https://cdn.simpleicons.org/x/FFFFFF"
+            alt="X (Twitter)"
             link="https://twitter.com/anasfaaiz"
           />
           <SocialIcon
-            imgSrc="/skills/github.svg"
+            imgSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
             alt="GitHub"
             link="https://github.com/anasfaaiz"
           />
@@ -108,7 +108,8 @@ function SocialIcon({ imgSrc, alt, link }) {
       rel="noopener noreferrer"
       className="rounded-full bg-white/5 p-3 hover:bg-gradient-to-br from-purple-500 to-blue-500 transition-all duration-300 shadow-md border border-white/10"
     >
-      <Image
+      {/* Replaced Next.js Image with standard img tag to fix compilation error */}
+      <img
         src={imgSrc}
         alt={alt}
         width={28}
