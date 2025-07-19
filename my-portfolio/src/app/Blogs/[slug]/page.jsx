@@ -16,8 +16,8 @@ export async function generateStaticParams() {
 }
 
 // This function sets the page's title and description
-export async function generateMetadata({ params }) {
-    const post = await getPostData(params.slug);
+export async function generateMetadata({ params: { slug } }) {
+    const post = await getPostData(slug);
     if (!post) {
       return {
         title: 'Not Found',
@@ -29,8 +29,8 @@ export async function generateMetadata({ params }) {
     };
 }
 
-export default async function BlogPostPage({ params }) {
-  const post = await getPostData(params.slug);
+export default async function BlogPostPage({ params: { slug } }) {
+  const post = await getPostData(slug);
 
   if (!post) {
     notFound();
