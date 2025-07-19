@@ -42,9 +42,9 @@ export default function ContactPage() {
         </div>
 
         {/* Social Links */}
-        <div className="flex justify-center flex-wrap gap-6 pt-6">
+        <div className="flex justify-center flex-wrap gap-8 pt-6">
           <SocialIcon
-            imgSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/discord/discord-original.svg"
+            imgSrc="https://cdn.simpleicons.org/discord/FFFFFF"
             alt="Discord"
             link="https://discord.com/users/anasfaaiz"
           />
@@ -98,24 +98,28 @@ function ContactItem({ icon, title, value, link }) {
   );
 }
 
-// Social icon button
+// Social icon button with text label
 function SocialIcon({ imgSrc, alt, link }) {
   return (
     <motion.a
-      whileHover={{ scale: 1.15 }}
+      whileHover={{ y: -4 }}
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="rounded-full bg-white/5 p-3 hover:bg-gradient-to-br from-purple-500 to-blue-500 transition-all duration-300 shadow-md border border-white/10"
+      className="flex flex-col items-center gap-2 group w-20"
     >
-      {/* Replaced Next.js Image with standard img tag to fix compilation error */}
-      <img
-        src={imgSrc}
-        alt={alt}
-        width={28}
-        height={28}
-        className="object-contain"
-      />
+      <div className="rounded-full bg-white/5 p-3 group-hover:bg-gradient-to-br from-purple-500 to-blue-500 transition-all duration-300 shadow-md border border-white/10">
+        <img
+          src={imgSrc}
+          alt={alt}
+          width={32}
+          height={32}
+          className="object-contain transition-transform duration-300 group-hover:scale-110"
+        />
+      </div>
+      <p className="text-xs text-gray-400 group-hover:text-white transition-colors duration-300 font-medium">
+        {alt}
+      </p>
     </motion.a>
   );
 }
