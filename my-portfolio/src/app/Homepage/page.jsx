@@ -10,6 +10,28 @@ import { motion } from "framer-motion";
 import CosmicSkillTree from "../components/features/Homepage/Skill.jsx";
 
 const Homepage = () => {
+
+  const SocialLink = ({ label, href }) => (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="
+        px-4 py-2
+        text-sm font-medium
+        text-gray-300
+        border border-white/10
+        rounded-full
+        hover:text-white
+        hover:border-blue-400/60
+        hover:bg-blue-500/10
+        transition-all
+      "
+    >
+      {label}
+    </a>
+  );
+
   return (
     <div className="relative min-h-screen bg-gradient-to-br from-gray-950 via-black to-gray-900 text-white overflow-hidden">
       {/* Soft Decorative Glows */}
@@ -31,10 +53,10 @@ const Homepage = () => {
               className="w-64 h-64 relative rounded-full overflow-hidden border-4 border-blue-500 shadow-lg"
             >
               <Image
-                src="/profile.png"
+                src="/profile.jpeg"
                 alt="Anas Faaiz"
                 fill
-                className="object-cover"
+                className="object-cover object-[50%_30%] scale-160"
                 priority
               />
             </motion.div>
@@ -51,32 +73,60 @@ const Homepage = () => {
               </h1>
 
               <h2 className="text-xl md:text-2xl font-semibold text-gray-300">
-                Full Stack Developer | Startup Enthusiast
+                <strong>Software Engineer · Full Stack & Automation · India (IST)</strong>
               </h2>
 
-              <p className="text-gray-400 max-w-2xl mx-auto md:mx-0">
-                I am a passionate Full Stack Developer with a keen interest in building innovative solutions. I love to explore new technologies and apply them to real-world problems.
+              <p className="text-gray-400 leading-relaxed">
+                <strong>Software Engineer</strong> focused on building scalable full-stack applications and automation-driven systems.
+                Passionate about solving real-world problems, designing clean architectures, and turning ideas into usable products.
               </p>
 
-              <div className="space-y-3">
-                <hr className="border-gray-700" />
-                <p className="text-gray-400 py-3 italic">
-                  "If you don’t take risks, you can’t create a future!"
-                </p>
-                <hr className="border-gray-700" />
+              <p className="text-gray-400 leading-relaxed">
+                Currently exploring <strong>cloud fundamentals</strong> and learning how modern applications
+                scale in production environments.
+              </p>
+
+              <div className="flex flex-wrap gap-2 justify-center md:justify-start">
+                {[
+                  "Automation",
+                  "Open Source Contributor",
+                  "Cloud Learner",
+                  "Problem Solver",
+                ].map((tag) => (
+                  <span
+                    key = {tag}
+                    className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-300 hover:border-blue-400 transition">
+                      {tag}
+                    </span>
+                ))}
               </div>
 
-              <div className="flex gap-4 justify-center md:justify-start pt-4">
-                <a href="/Anas_Faaiz_Resume.pdf" download="Syed Anas Faaiz - Resume.pdf">
-		  <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-md transition-all">
-                    Download CV
-                  </button>
-		</a>
-		<a href="#contact">
-                  <button className="border border-blue-600 text-blue-400 hover:bg-blue-600/10 px-6 py-2 rounded-md transition-all">
-                    Contact Me
-                  </button>
-		</a>
+              <p className="text-sm text-gray-500">
+                Actively seeking internships / junior roles · Open to remote opportunities
+              </p>
+              <div className="flex flex-col sm:flex-row sm:items-center gap-6 pt-4">
+                {/* Primary Actions */}
+                <div className="flex gap-4 justify-center md:justify-start">
+                  <a href="/Anas_Faaiz_Resume.pdf" download>
+                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-md font-medium transition-all">
+                      Download Resume
+                    </button>
+                  </a>
+
+                  <a href="#contact">
+                    <button className="border border-blue-600 text-blue-400 hover:bg-blue-600/10 px-6 py-2.5 rounded-md font-medium transition-all">
+                      Contact Me
+                    </button>
+                  </a>
+                </div>
+
+                {/* Social Links */}
+                <div className="flex gap-3 sm:ml-6">
+                  <SocialLink label="GitHub" href="https://github.com/AnasFaaiz" />
+                  <SocialLink label="LinkedIn" href="www.linkedin.com/in/syed-anas-faaiz-838602288" />
+                  <SocialLink label="X" href="https://twitter.com/syedanasfaaiz" />
+                  <SocialLink label="Discord" href="https://discord.com/users/anasfaaiz" />
+                </div>   
               </div>
             </motion.div>
           </section>

@@ -1,33 +1,33 @@
 export const featuredProjects = [
-    {
-        id: 1,
-        title: "EntreLink: Entreprenuer Platform",
-        description: "A platform for connecting & sharing resources between entrepreurs.",
-        image: "/projects/ecommerce.jpg",
-        technologies: ["React", "Node.js", "MongoDB", "tailwind css"],
-        // liveUrl: "https://anasfaaiz.github.io/EntreLink/",
-        githubUrl: "https://github.com/AnasFaaiz/EntreLink",
-        featured: true
-    },
-    {
-        id: 2,
-        title: "TimeBlocker with AI ",
-        description: "A Time management platform for managing your time using AI scheduling and suggestions.",
-        image: "/projects/taskmanager.jpg",
-        technologies: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
-        // liveUrl: "https://example-taskmanager.com",
-        githubUrl: "https://github.com/AnasFaaiz/TimeBlocker-with-AI-Gateway",
-        featured: true
-    },
-    {
-        id: 3,
-        title: "Sensei Bot",
-        description: "A bot for communities to send a message new term according to fields everyday at scheduled time.",
-        image: "/projects/weather.jpg",
-        technologies: ["JavaScript", "Open API", "Chart.js"],
-        // liveUrl: "https://example-weather.com",
-        githubUrl: "https://github.com/AnasFaaiz/SenseiBot",
-        featured: true
-    },
+  {
+    id: 1,
+    title: "A.C.E — Automated Command Environment",
+    description:
+      "A terminal-based developer assistant designed to automate repetitive commands, manage workflows, and streamline daily development tasks.",
+    image: "/projects/ace.png",
+    technologies: ["Python", "CLI", "Automation", "AI"],
+    githubUrl: "https://github.com/AnasFaaiz/ACE",
+    featured: true,
+  },
+  {
+    id: 2,
+    title: "Kernel Magazine Platform",
+    description:
+      "A full-stack web platform for managing and publishing a university department magazine, including article workflows and admin controls.",
+    image: "/projects/magazine.png",
+    technologies: ["Next.js", "Node.js", "MongoDB", "Tailwind CSS"],
+    githubUrl: "https://github.com/AnasFaaiz/Kernel-Magazine",
+    featured: true,
+  },
+  {
+  id: 3,
+  title: "Learn-Tech — AI-Powered Learning Platform",
+  description:
+    "An AI-driven adaptive learning platform that personalizes content, quizzes, and guidance based on learner progress and preferences.",
+  image: "/projects/learn_tech.jpeg",
+  technologies: ["React", "Django", "AI", "Adaptive Learning"],
+  githubUrl: "https://github.com/AnasFaaiz/Learn-Tech", // replace with repo if public
+  featured: true,
+  },
 ];
 
