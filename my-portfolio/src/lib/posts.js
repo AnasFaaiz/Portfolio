@@ -1,45 +1,59 @@
-import fs from 'fs';
-import path from 'path';
-import matter from 'gray-matter';
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
 
-const postsDirectory = path.join(process.cwd(), 'content/Blogs');
+const postsDirectory = path.join(process.cwd(), "content/Blogs");
 
+/* ============================
+   GET ALL BLOG METADATA
+============================ */
 export function getSortedPostsData() {
-   const fileNames = fs.readdirSync(postsDirectory);
-   const allPostsData = fileNames.map((fileName) => {
-	const slug = fileName.replace(/\.mdx$/, '');
+  const fileNames = fs
+    .readdirSync(postsDirectory)
+    .filter(file => file.endsWith(".mdx")); // ✅ IMPORTANT
 
-	const fullPath = path.join(postsDirectory, fileName);
-	const fileContents = fs.readFileSync(fullPath, 'utf8');
-	
-	const matterResult = matter(fileContents);
+  const allPostsData = fileNames.map((fileName) => {
+    const slug = fileName.replace(/\.mdx$/, "");
 
-	return {
-		slug,
-		...matterResult.data,
-		};
-	});
+    const fullPath = path.join(postsDirectory, fileName);
+    const fileContents = fs.readFileSync(fullPath, "utf8");
 
-	return allPostsData.sort((a, b) => {
-		if(a.date < b.date){
-			return 1;
-		}else{
-			return -1;
-		}
-	});
+    const { data } = matter(fileContents);
+
+    return {
+      slug, // ✅ always defined
+      title: data.title ?? slug.replace(/-/g, " "),
+      date: data.date ?? "",
+      description: data.description ?? "",
+    };
+  });
+
+  return allPostsData.sort((a, b) =>
+    a.date < b.date ? 1 : -1
+  );
 }
 
-export async function getPostData(slug) {
+/* ============================
+   GET SINGLE BLOG CONTENT
+============================ */
+export function getPostData(slug) {
+  if (!slug) return null; // ✅ safety
+
   const fullPath = path.join(postsDirectory, `${slug}.mdx`);
-  const fileContents = fs.readFileSync(fullPath, 'utf8');
 
-  // Use gray-matter to parse the post metadata section
-  const matterResult = matter(fileContents);
+  if (!fs.existsSync(fullPath)) {
+    return null; // ✅ prevents undefined.mdx crash
+  }
 
-  // Return all data, including the main content
+  const fileContents = fs.readFileSync(fullPath, "utf8");
+  const { data, content } = matter(fileContents);
+
   return {
     slug,
-    ...matterResult.data,
-    content: matterResult.content,
+    title: data.title ?? slug.replace(/-/g, " "),
+    date: data.date ?? "",
+    description: data.description ?? "",
+    content,
   };
 }
+
