@@ -7,10 +7,11 @@ import { Menu, X } from 'lucide-react';
 
 
 const navItems = [
+  { name: "Home", href: "/Homepage" },
   { name: "Projects", href: "/Projects" },
-  { name: "Blogs", href: "/Blogs" },
+  // { name: "Blogs", href: "/Blogs" },
   { name: "Contact", href: "/Contact" },
-  { name: "Certifications", href: "/Certifications"},
+  { name: "Certifications", href: "/Certifications" },
 ];
 
 const Navbar = () => {
@@ -21,7 +22,7 @@ const Navbar = () => {
     setPathname(window.location.pathname);
   }, []);
 
- return (
+  return (
     <nav className="fixed top-8 left-1/2 -translate-x-1/2 z-50 w-full max-w-3xl px-5 sm:px-0">
       <div className="relative">
         {/* Main Navbar Body */}

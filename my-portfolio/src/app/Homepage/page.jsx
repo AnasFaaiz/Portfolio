@@ -3,11 +3,13 @@
 import Navbar from "@/app/components/layout/Navbar";
 import Image from "next/image";
 import ProjectSection from "../components/features/Homepage/Projects";
-import BlogsLatest from "../components/features/Homepage/blogs.jsx";
+// import BlogsLatest from "../components/features/Homepage/blogs.jsx";
 import Certifications from "../components/features/Homepage/certifications.jsx";
 import ContactPage from "../Contact/page.jsx";
 import { motion } from "framer-motion";
 import CosmicSkillTree from "../components/features/Homepage/Skill.jsx";
+import { SocialIcon } from "../Contact/page";
+import ExperienceSection from "../components/features/Homepage/Experience";
 
 const Homepage = () => {
 
@@ -73,7 +75,7 @@ const Homepage = () => {
               </h1>
 
               <h2 className="text-xl md:text-2xl font-semibold text-gray-300">
-                <strong>Software Engineer · Full Stack & Automation · India (IST)</strong>
+                <strong>Software Engineer · Full Stack & Automation </strong>
               </h2>
 
               <p className="text-gray-400 leading-relaxed">
@@ -94,10 +96,10 @@ const Homepage = () => {
                   "Problem Solver",
                 ].map((tag) => (
                   <span
-                    key = {tag}
+                    key={tag}
                     className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-300 hover:border-blue-400 transition">
-                      {tag}
-                    </span>
+                    {tag}
+                  </span>
                 ))}
               </div>
 
@@ -122,11 +124,29 @@ const Homepage = () => {
 
                 {/* Social Links */}
                 <div className="flex gap-3 sm:ml-6">
-                  <SocialLink label="GitHub" href="https://github.com/AnasFaaiz" />
-                  <SocialLink label="LinkedIn" href="www.linkedin.com/in/syed-anas-faaiz-838602288" />
-                  <SocialLink label="X" href="https://twitter.com/syedanasfaaiz" />
-                  <SocialLink label="Discord" href="https://discord.com/users/anasfaaiz" />
-                </div>   
+                  <SocialIcon
+                    imgSrc="https://cdn.simpleicons.org/discord/FFFFFF"
+                    alt="Discord"
+                    link="https://discord.com/users/anasfaaiz"
+                  />
+                  <SocialIcon
+                    imgSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+                    alt="LinkedIn"
+                    link="https://linkedin.com/in/anasfaaiz"
+                  />
+                  <SocialIcon
+                    imgSrc="https://cdn.simpleicons.org/x/FFFFFF"
+                    alt="X (Twitter)"
+                    link="https://twitter.com/anasfaaiz"
+                  />
+                  <SocialIcon
+                    imgSrc="https://cdn.simpleicons.org/github/FFFFFF"
+                    alt="GitHub"
+                    link="https://github.com/anasfaaiz"
+                    size={32}
+                  />
+
+                </div>
               </div>
             </motion.div>
           </section>
@@ -141,13 +161,19 @@ const Homepage = () => {
             <ProjectSection />
           </section>
 
-          {/* Blogs Section */}
-          <section className="scroll-mt-20" id="blogs">
-            <BlogsLatest />
+          {/* Experience Section */}
+          <section className="scroll-mt-20" id="experience">
+            <ExperienceSection />
           </section>
 
+
+          {/* Blogs Section */}
+          {/*<section className="scroll-mt-20" id="blogs">
+            <BlogsLatest />
+          </section> */}
+
           {/* Certifications Section */}
-          <section className="scroll-mt-20" id="certifications">
+          <section className="scroll-mt-5 mb-2" id="certifications">
             <Certifications />
           </section>
 

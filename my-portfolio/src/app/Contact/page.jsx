@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function ContactPage() {
   return (
-    <main className="relative px-4 py-8 bg-gradient-to-br from-gray-950 via-black to-gray-900 overflow-hidden flex items-center justify-center rounded-3xl">
+    <main className="relative px-4 py-10 bg-gradient-to-br from-gray-950 via-black to-gray-900 overflow-hidden flex items-center justify-center rounded-3xl top-20">
       {/* Background glow blobs */}
       <div className="absolute top-0 left-0 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl animate-pulse z-0" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse z-0" />
@@ -21,8 +21,16 @@ export default function ContactPage() {
           Get in Touch
         </h1>
 
+        <p className="text-center text-gray-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+          Have an idea, opportunity, or just want to say hi?{" "}
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 font-semibold">
+            Drop me an email and let’s connect.
+          </span>
+        </p>
+
+
         {/* Contact Info */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
           <ContactItem
             icon={<User className="text-purple-300 w-6 h-6" />}
             title="Name"
@@ -34,11 +42,11 @@ export default function ContactPage() {
             value="syed.anasfaaiz@gmail.com"
             link="mailto:syed.anasfaaiz@gmail.com"
           />
-          <ContactItem
-            icon={<Phone className="text-green-300 w-6 h-6" />}
-            title="Phone"
-            value="+91 7093035427"
-          />
+          {/* <ContactItem */}
+          {/*   icon={<Phone className="text-green-300 w-6 h-6" />} */}
+          {/*   title="Phone" */}
+          {/*   value="+91 7093035427" */}
+          {/* /> */}
         </div>
 
         {/* Social Links */}
@@ -59,7 +67,7 @@ export default function ContactPage() {
             link="https://twitter.com/anasfaaiz"
           />
           <SocialIcon
-            imgSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
+            imgSrc="https://cdn.simpleicons.org/github/FFFFFF"
             alt="GitHub"
             link="https://github.com/anasfaaiz"
           />
@@ -99,7 +107,7 @@ function ContactItem({ icon, title, value, link }) {
 }
 
 // Social icon button with text label
-function SocialIcon({ imgSrc, alt, link }) {
+export function SocialIcon({ imgSrc, alt, link, size = 32 }) {
   return (
     <motion.a
       whileHover={{ y: -4 }}
@@ -112,8 +120,8 @@ function SocialIcon({ imgSrc, alt, link }) {
         <img
           src={imgSrc}
           alt={alt}
-          width={32}
-          height={32}
+          width={size}
+          height={size}
           className="object-contain transition-transform duration-300 group-hover:scale-110"
         />
       </div>
