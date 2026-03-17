@@ -10,9 +10,6 @@ jobs:
     build-and-test:
         runs-on: ubuntu-latest
 
-        defaults:
-            run:
-                working-directory: portfolio
 
         steps:
             - name: Checkout code
@@ -25,8 +22,11 @@ jobs:
                 cache: 'npm'
                 cache-dependency-path: portfolio/package-lock.json
             - name: Install dependencies
+              working-directory: portfolio
               run: npm ci
             - name: Lint Code
+              working-directory: portfolio
               run: npm run lint
             - name: Build Project
+              working-directory: portfolio
               run: npm run build
