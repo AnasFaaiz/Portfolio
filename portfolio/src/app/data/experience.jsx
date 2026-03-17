@@ -1,5 +1,16 @@
 export const experiences = [
   {
+    role: "Full-Stack Developer Intern",
+    duration: "Jan 2026 – Mar 2026",
+    location: "Remote",
+    orgs: "NoDevBuild",
+    points: [
+      "Engineered responsive, data-driven interfaces using Next.js, integrating REST APIs and implementing Express backend endpoints to support real-time academic workflows.",
+      "Built end-to-end features for an investment platform using Next.js and Express, spanning interactive data visualization, portfolio management views, and backend API development.",
+      "Developed UI and integrated backend services for a food-tech platform, owning feature delivery across the full stack from data layer to user interaction.",
+    ],
+  },
+  {
     role: 'Open Source Contributor',
     duration: 'Sep 2025 – Oct 2025',
     location: 'Remote',
@@ -13,7 +24,7 @@ export const experiences = [
   },
   {
     role: 'Web Developer — Kernel Magazine',
-    duration: '2024 – Present',
+    duration: '2024 – 2025',
     location: 'KLH University',
     orgs: 'College Publication · Internal Platform',
     points: [
@@ -23,13 +34,5 @@ export const experiences = [
       'Improving navigation, layout consistency, and overall user experience across devices.',
     ],
   },
-  // Future experiences go here 👇
-  // {
-  //   role: '',
-  //   duration: '',
-  //   location: '',
-  //   orgs: '',
-  //   points: [],
-  // },
 ];
 
