@@ -1,133 +1,190 @@
 "use client";
-import { Mail, User, Phone } from "lucide-react";
+
+import React from "react";
+import { Mail, User, Phone, Send, ArrowRight, Github, Linkedin, Twitter, MessageSquare, X as XIcon } from "lucide-react";
 import { motion } from "framer-motion";
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } }
+};
+
+const staggerContainer = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.15
+    }
+  }
+};
 
 export default function ContactPage() {
   return (
-    <main className="relative px-4 py-10 bg-white dark:bg-gray-950 transition-colors duration-500 overflow-hidden flex items-center justify-center rounded-3xl top-20">
-      {/* Background glow blobs */}
-      <div className="absolute top-0 left-0 w-80 h-80 bg-purple-600/10 dark:bg-purple-600/20 rounded-full blur-3xl animate-pulse z-0" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl animate-pulse z-0" />
+    <section className="relative px-4 py-16 bg-transparent overflow-hidden">
+      {/* Background Decorative Glow */}
+      <div className="absolute top-[20%] right-[-10%] w-[45rem] h-[45rem] bg-blue-500/5 dark:bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute bottom-[10%] left-[-5%] w-[35rem] h-[35rem] bg-indigo-500/5 dark:bg-indigo-600/5 rounded-full blur-[120px] pointer-events-none" />
 
-      {/* Main container */}
       <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="relative z-10 w-full max-w-6xl bg-gray-50/50 dark:bg-white/5 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-3xl shadow-xl dark:shadow-2xl p-6 sm:p-10 md:p-14 space-y-12 text-gray-900 dark:text-white"
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={staggerContainer}
+        className="max-w-[1400px] mx-auto space-y-16"
       >
-        <h1 className="text-4xl md:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 drop-shadow-lg">
-          Get in Touch
-        </h1>
-
-        <p className="text-center text-zinc-600 dark:text-gray-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
-          Have an idea, opportunity, or just want to say hi?{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 font-semibold">
-            Drop me an email and let’s connect.
-          </span>
-        </p>
-
-
-        {/* Contact Info */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
-          <ContactItem
-            icon={<User className="text-purple-600 dark:text-purple-300 w-6 h-6" />}
-            title="Name"
-            value="Syed Anas Faaiz"
-          />
-          <ContactItem
-            icon={<Mail className="text-blue-600 dark:text-blue-300 w-6 h-6" />}
-            title="Email"
-            value="syed.anasfaaiz@gmail.com"
-            link="mailto:syed.anasfaaiz@gmail.com"
-          />
-          {/* <ContactItem */}
-          {/*   icon={<Phone className="text-green-300 w-6 h-6" />} */}
-          {/*   title="Phone" */}
-          {/*   value="+91 7093035427" */}
-          {/* /> */}
+        {/* Header Area: Left Aligned Title */}
+        <div className="space-y-3 text-left px-4">
+          <motion.div 
+            variants={fadeUp}
+            className="inline-flex items-center gap-2.5 px-4 py-1 rounded-full bg-slate-50 dark:bg-slate-900/40 border border-slate-200/50 dark:border-white/5"
+          >
+            <div className="w-1 h-1 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
+            <span className="text-slate-500 dark:text-slate-400 text-[9px] font-bold uppercase tracking-[0.25em]">Connect</span>
+          </motion.div>
+          <motion.h2 
+            variants={fadeUp}
+            className="text-3xl md:text-5xl font-extralight tracking-[0.15em] uppercase text-slate-800 dark:text-white leading-none"
+          >
+            Let's Start a <span className="font-bold tracking-tight lowercase italic text-blue-600 dark:text-blue-400">Conversation</span>
+          </motion.h2>
+          <motion.p 
+            variants={fadeUp}
+            className="text-slate-500 dark:text-slate-400 max-w-xl text-sm sm:text-base leading-relaxed font-medium"
+          >
+            I'm currently looking for new opportunities and my inbox is always open. 
+            Whether you have a question or just want to connect, I'll get back to you as soon as possible.
+          </motion.p>
         </div>
 
-        {/* Social Links */}
-        <div className="flex justify-center flex-wrap gap-8 pt-6">
-          <SocialIcon
-            imgSrc="https://cdn.simpleicons.org/discord/FFFFFF"
-            alt="Discord"
-            link="https://discord.com/users/anasfaaiz"
-          />
-          <SocialIcon
-            imgSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
-            alt="LinkedIn"
-            link="https://linkedin.com/in/anasfaaiz"
-          />
-          <SocialIcon
-            imgSrc="https://cdn.simpleicons.org/x/FFFFFF"
-            alt="X (Twitter)"
-            link="https://twitter.com/anasfaaiz"
-          />
-          <SocialIcon
-            imgSrc="https://cdn.simpleicons.org/github/FFFFFF"
-            alt="GitHub"
-            link="https://github.com/anasfaaiz"
-          />
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 px-4">
+          {/* Main Contact Form / Info Side */}
+          <div className="lg:col-span-7 space-y-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <motion.div variants={fadeUp} className="group relative p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 shadow-xl shadow-slate-200/20 dark:shadow-none transition-all hover:border-blue-500/30">
+                <div className="space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center text-blue-600 dark:bg-blue-500/10 dark:text-blue-400">
+                    <Mail size={24} strokeWidth={2.5} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1">Email Me</p>
+                    <a href="mailto:syed.anasfaaiz@gmail.com" className="text-lg font-black text-slate-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors break-words">
+                      syed.anasfaaiz@gmail.com
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
+
+              <motion.div variants={fadeUp} className="group relative p-8 rounded-[2.5rem] bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 shadow-xl shadow-slate-200/20 dark:shadow-none transition-all hover:border-blue-500/30">
+                <div className="space-y-4">
+                  <div className="w-12 h-12 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 dark:bg-indigo-500/10 dark:text-indigo-400">
+                    <MessageSquare size={24} strokeWidth={2.5} />
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 dark:text-slate-500 mb-1">Text Me</p>
+                    <p className="text-lg font-black text-slate-800 dark:text-white tabular-nums">
+                      Discord: anasfaaiz
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            <motion.div variants={fadeUp} className="relative p-10 rounded-[3rem] bg-gradient-to-br from-blue-600 to-indigo-700 shadow-2xl shadow-blue-500/30 overflow-hidden">
+              <div className="absolute top-0 right-0 p-8 opacity-10 rotate-12 scale-150">
+                <Send size={120} />
+              </div>
+              <div className="relative z-10 space-y-6">
+                <h3 className="text-3xl font-black text-white tracking-tight leading-tight">
+                  Have a specific project <br /> in mind?
+                </h3>
+                <p className="text-blue-100 font-medium max-w-md">
+                  I'm always excited to collaborate on innovative ideas or help bring your digital vision to life.
+                </p>
+                <div className="pt-4">
+                  <a href="mailto:syed.anasfaaiz@gmail.com" className="inline-flex items-center gap-3 px-8 py-4 bg-white text-blue-600 rounded-2xl text-xs font-black uppercase tracking-widest hover:bg-slate-50 transition-all shadow-xl active:scale-95">
+                    Say Hello <ArrowRight size={16} strokeWidth={2.5} />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Social Links Side */}
+          <div className="lg:col-span-5 space-y-8">
+            <motion.div variants={fadeUp} className="p-8 rounded-[2.5rem] bg-slate-50 dark:bg-white/5 border border-slate-200/50 dark:border-white/5">
+              <h3 className="text-xs font-black uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500 mb-8 px-2">Follow my Work</h3>
+              <div className="grid grid-cols-2 gap-4">
+                <SocialCard 
+                  icon={<Github size={20} />} 
+                  name="GitHub"
+                  label="Open Source"
+                  link="https://github.com/anasfaaiz"
+                  color="hover:bg-slate-900 group-hover:text-white"
+                />
+                <SocialCard 
+                  icon={<Linkedin size={20} />} 
+                  name="LinkedIn"
+                  label="Professional"
+                  link="https://linkedin.com/in/anasfaaiz"
+                  color="hover:bg-[#0077B5] group-hover:text-white"
+                />
+                <SocialCard 
+                  icon={<XIcon size={20} />} 
+                  name="X"
+                  label="Thoughts"
+                  link="https://twitter.com/anasfaaiz"
+                  color="hover:bg-black group-hover:text-white"
+                />
+                <SocialCard 
+                  icon={<MessageSquare size={20} />} 
+                  name="Discord"
+                  label="Chat"
+                  link="https://discord.com/users/anasfaaiz"
+                  color="hover:bg-[#5865F2] group-hover:text-white"
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
       </motion.div>
-    </main>
+    </section>
   );
 }
 
-// Contact card
-function ContactItem({ icon, title, value, link }) {
+function SocialCard({ icon, name, label, link, color }) {
   return (
-    <motion.div
-      whileHover={{ scale: 1.03 }}
-      className="flex items-start gap-4 p-5 bg-black/5 dark:bg-white/5 rounded-xl hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 transition duration-300 shadow-md h-full"
-    >
-      <div className="w-12 h-12 flex items-center justify-center bg-zinc-200 dark:bg-gray-700 rounded-full shadow-inner shrink-0">
-        {icon}
+    <a href={link} target="_blank" rel="noopener noreferrer" className={`group block p-6 rounded-[2rem] bg-white dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 shadow-sm transition-all duration-300 ${color}`}>
+      <div className="space-y-3">
+        <div className="w-10 h-10 rounded-xl bg-slate-50 dark:bg-white/5 flex items-center justify-center text-slate-600 dark:text-slate-400 group-hover:bg-white/20 group-hover:!text-white transition-all">
+          {icon}
+        </div>
+        <div>
+          <p className="text-sm font-black text-slate-800 dark:text-white group-hover:!text-white transition-colors">{name}</p>
+          <p className="text-[10px] font-bold text-slate-400 group-hover:!text-white transition-colors uppercase tracking-widest">{label}</p>
+        </div>
       </div>
-      <div className="flex-1 overflow-hidden">
-        <h2 className="text-sm font-medium text-zinc-500 dark:text-gray-400">{title}</h2>
-        {link ? (
-          <a
-            href={link}
-            className="text-base text-blue-600 dark:text-blue-400 font-extrabold hover:underline break-words"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {value}
-          </a>
-        ) : (
-          <p className="text-base text-gray-900 dark:text-gray-100 font-extrabold break-words">{value}</p>
-        )}
-      </div>
-    </motion.div>
+    </a>
   );
 }
 
-// Social icon button with text label
-export function SocialIcon({ imgSrc, alt, link, size = 32 }) {
+export function SocialIcon({ imgSrc, alt, link, size = 20 }) {
   return (
     <motion.a
-      whileHover={{ y: -4 }}
+      whileHover={{ y: -4, scale: 1.1 }}
+      whileTap={{ scale: 0.9 }}
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex flex-col items-center gap-1.5 group w-20"
+      className="p-3 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500/50 transition-all shadow-sm group"
     >
-      <div className="rounded-xl bg-black/5 dark:bg-white/5 p-4 group-hover:bg-blue-600 dark:group-hover:bg-blue-600 transition-all duration-300 shadow-md border border-black/5 dark:border-white/10">
-        <img
-          src={imgSrc}
-          alt={alt}
-          width={size}
-          height={size}
-          className="object-contain transition-all duration-300 group-hover:scale-110 brightness-0 dark:invert group-hover:brightness-0 group-hover:invert"
-        />
-      </div>
-      <p className="text-[10px] sm:text-xs text-zinc-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 font-bold uppercase tracking-wider">
-        {alt}
-      </p>
+      <img
+        src={imgSrc}
+        alt={alt}
+        width={size}
+        height={size}
+        className="object-contain transition-all duration-300 brightness-0 dark:invert group-hover:brightness-0 group-hover:invert"
+      />
     </motion.a>
   );
 }

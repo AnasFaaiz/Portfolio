@@ -148,7 +148,7 @@ const Homepage = () => {
                   />
                   <SocialIcon
                     imgSrc="https://cdn.simpleicons.org/x"
-                    alt="X (Twitter)"
+                    alt="X"
                     link="https://twitter.com/anasfaaiz"
                   />
                   <SocialIcon
