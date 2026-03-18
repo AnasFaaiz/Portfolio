@@ -144,7 +144,7 @@ const Homepage = () => {
                     hoverBg="hover:bg-[#5865F2]"
                   />
                   <SocialIcon
-                    imgSrc="https://cdn.simpleicons.org/linkedin"
+                    icon={Linkedin}
                     alt="LinkedIn"
                     link="https://linkedin.com/in/anasfaaiz"
                     hoverBg="hover:bg-[#0077B5]"
