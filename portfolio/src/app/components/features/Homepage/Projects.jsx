@@ -23,11 +23,11 @@ export default function Projects() {
         const itemWidth = children[0].offsetWidth;
         const gap = 32; // This matches the 'gap-8' (8 * 4px)
         const step = itemWidth + gap;
-        
-        const scrollTo = direction === 'left' 
-          ? scrollLeft - step 
+
+        const scrollTo = direction === 'left'
+          ? scrollLeft - step
           : scrollLeft + step;
-        
+
         scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
       }
     }
@@ -37,7 +37,7 @@ export default function Projects() {
     <section className="relative px-4 py-8 bg-transparent overflow-hidden group/projects">
       {/* Background Decorative Glow */}
       <div className="absolute top-[20%] left-[-10%] w-[40rem] h-[40rem] bg-blue-500/5 dark:bg-blue-600/5 rounded-full blur-[120px] pointer-events-none" />
-      
+
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -48,14 +48,14 @@ export default function Projects() {
         {/* Header Area... */}
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 px-4">
           <div className="space-y-3 text-left">
-            <motion.div 
+            <motion.div
               variants={fadeUp}
               className="inline-flex items-center gap-2.5 px-4 py-1 rounded-full bg-slate-50 dark:bg-slate-900/40 border border-slate-200/50 dark:border-white/5"
             >
               <div className="w-1 h-1 rounded-full bg-blue-500 shadow-[0_0_8px_rgba(59,130,246,0.5)]" />
               <span className="text-slate-500 dark:text-slate-400 text-[9px] font-bold uppercase tracking-[0.25em]">Works</span>
             </motion.div>
-            <motion.h2 
+            <motion.h2
               variants={fadeUp}
               className="text-3xl md:text-5xl font-extralight tracking-[0.15em] uppercase text-slate-800 dark:text-white leading-none"
             >
@@ -65,7 +65,7 @@ export default function Projects() {
 
           <motion.div variants={fadeUp}>
             <Link
-              href="/projects"
+              href="/Projects"
               className="group/link flex items-center gap-2 px-5 py-2 rounded-full border border-slate-200 dark:border-white/10 text-[10px] font-black uppercase tracking-widest text-slate-500 hover:text-blue-600 hover:border-blue-500 dark:hover:text-blue-400 dark:hover:border-blue-400 transition-all"
             >
               All projects
@@ -78,12 +78,12 @@ export default function Projects() {
         <div className="relative overflow-hidden sm:overflow-visible">
           {/* Edge Fades - Left */}
           <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-32 z-20 bg-gradient-to-r from-white dark:from-gray-950 to-transparent pointer-events-none" />
-          
+
           {/* Edge Fades - Right */}
           <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-32 z-20 bg-gradient-to-l from-white dark:from-gray-950 to-transparent pointer-events-none" />
 
           {/* Side Navigation Arrows - Left */}
-          <button 
+          <button
             onClick={() => scroll('left')}
             className="absolute left-4 top-1/2 -translate-y-1/2 z-40 p-3 sm:p-4 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/20 text-slate-800 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 shadow-xl transition-all opacity-0 sm:opacity-70 group-hover/projects:opacity-100 hidden sm:flex active:scale-90"
           >
@@ -91,7 +91,7 @@ export default function Projects() {
           </button>
 
           {/* Side Navigation Arrows - Right */}
-          <button 
+          <button
             onClick={() => scroll('right')}
             className="absolute right-4 top-1/2 -translate-y-1/2 z-40 p-3 sm:p-4 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-white/20 text-slate-800 dark:text-white hover:text-blue-500 dark:hover:text-blue-400 shadow-xl transition-all opacity-0 sm:opacity-70 group-hover/projects:opacity-100 hidden sm:flex active:scale-90"
           >
@@ -139,7 +139,7 @@ export default function Projects() {
                         </div>
                       ))}
                     </div>
-                    
+
                     <p className="text-sm text-slate-300 line-clamp-2 font-medium leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 delay-200">
                       {project.description}
                     </p>

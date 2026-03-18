@@ -1,5 +1,5 @@
 'use client';
-import { Download, ArrowRight } from "lucide-react";
+import { Download, ArrowRight, Github, Linkedin, X, MessageSquare } from "lucide-react";
 
 import Navbar from "@/app/components/layout/Navbar";
 import Image from "next/image";
@@ -107,56 +107,60 @@ const Homepage = () => {
               <p className="text-sm text-gray-500">
                 Actively seeking internships / junior roles · Open to remote opportunities
               </p>
-              <div className="flex flex-col sm:flex-row sm:items-center gap-6 pt-4">
+              <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 pt-4">
                 {/* Primary Actions */}
-                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                <div className="flex items-center gap-4">
                   <motion.a 
-                    href="/Anas_Faaiz_Resume.pdf" 
+                    href="/Syed%20Anas%20Faaiz_Resume.pdf" 
                     download
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center gap-2.5 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3.5 rounded-2xl font-black text-sm uppercase tracking-wider shadow-xl shadow-blue-500/25 transition-all"
                   >
-                    <button className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-6 py-2.5 rounded-full font-bold text-sm sm:text-base whitespace-nowrap shadow-lg shadow-blue-500/25 transition-all">
-                      <Download size={18} className="shrink-0" />
-                      Download Resume
-                    </button>
+                    <Download size={18} strokeWidth={3} />
+                    Resume
                   </motion.a>
 
                   <motion.a 
                     href="#contact"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
+                    whileHover={{ y: -2 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="group flex items-center gap-2.5 bg-white dark:bg-slate-900 border-2 border-slate-200 dark:border-white/10 text-slate-800 dark:text-white px-8 py-3.5 rounded-2xl font-black text-sm uppercase tracking-wider hover:border-blue-500/50 hover:text-blue-600 dark:hover:text-blue-400 transition-all shadow-lg"
                   >
-                    <button className="group flex items-center gap-2 border-2 border-blue-600 dark:border-blue-500 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white transition-all px-6 py-2.5 rounded-full font-bold text-sm sm:text-base whitespace-nowrap">
-                      Contact Me
-                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform shrink-0" />
-                    </button>
+                    Contact
+                    <ArrowRight size={18} strokeWidth={3} className="group-hover:translate-x-1 transition-transform" />
                   </motion.a>
                 </div>
 
+                {/* Vertical Divider (Desktop only) */}
+                <div className="hidden sm:block w-px h-10 bg-slate-200 dark:bg-white/10 mx-2" />
+
                 {/* Social Links */}
-                <div className="flex gap-3 sm:ml-6">
+                <div className="flex items-center gap-3">
                   <SocialIcon
                     imgSrc="https://cdn.simpleicons.org/discord"
                     alt="Discord"
                     link="https://discord.com/users/anasfaaiz"
+                    hoverBg="hover:bg-[#5865F2]"
                   />
                   <SocialIcon
                     imgSrc="https://cdn.simpleicons.org/linkedin"
                     alt="LinkedIn"
                     link="https://linkedin.com/in/anasfaaiz"
+                    hoverBg="hover:bg-[#0077B5]"
                   />
                   <SocialIcon
                     imgSrc="https://cdn.simpleicons.org/x"
                     alt="X"
                     link="https://twitter.com/anasfaaiz"
+                    hoverBg="hover:bg-black"
                   />
                   <SocialIcon
                     imgSrc="https://cdn.simpleicons.org/github"
                     alt="GitHub"
                     link="https://github.com/anasfaaiz"
+                    hoverBg="hover:bg-[#24292e]"
                   />
-
                 </div>
               </div>
             </motion.div>
