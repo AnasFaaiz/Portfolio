@@ -1,4 +1,5 @@
 'use client';
+import { Download, ArrowRight } from "lucide-react";
 
 import Navbar from "@/app/components/layout/Navbar";
 import Image from "next/image";
@@ -35,18 +36,18 @@ const Homepage = () => {
   );
 
   return (
-    <div className="relative min-h-screen bg-gradient-to-br from-gray-950 via-black to-gray-900 text-white overflow-hidden">
+    <div className="relative min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white transition-colors duration-500 overflow-hidden">
       {/* Soft Decorative Glows */}
-      <div className="absolute top-[-5rem] left-[-5rem] w-[25rem] h-[25rem] bg-blue-500/10 rounded-full blur-[100px] z-0" />
-      <div className="absolute bottom-[-5rem] right-[-5rem] w-[30rem] h-[30rem] bg-purple-600/10 rounded-full blur-[100px] z-0" />
+      <div className="absolute top-[-5rem] left-[-5rem] w-[25rem] h-[25rem] bg-blue-500/20 dark:bg-blue-500/10 rounded-full blur-[100px] z-0" />
+      <div className="absolute bottom-[-5rem] right-[-5rem] w-[30rem] h-[30rem] bg-purple-600/20 dark:bg-purple-600/10 rounded-full blur-[100px] z-0" />
 
       {/* Content Wrapper */}
       <div className="relative z-10">
         <Navbar />
 
-        <main className="container mx-auto px-4 pt-20 space-y-24">
+        <main className="container mx-auto px-4 pt-24 space-y-4">
           {/* Hero Section */}
-          <section className="py-16 flex flex-col md:flex-row items-center gap-10">
+          <section className="py-2 flex flex-col md:flex-row items-center gap-10">
             {/* Profile Image */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -74,16 +75,16 @@ const Homepage = () => {
                 Syed Anas Faaiz
               </h1>
 
-              <h2 className="text-xl md:text-2xl font-semibold text-gray-300">
+              <h2 className="text-xl md:text-2xl font-semibold text-zinc-600 dark:text-gray-300">
                 <strong>Software Engineer · Full Stack & Automation </strong>
               </h2>
 
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-zinc-600 dark:text-gray-400 leading-relaxed">
                 <strong>Software Engineer</strong> focused on building scalable full-stack applications and automation-driven systems.
                 Passionate about solving real-world problems, designing clean architectures, and turning ideas into usable products.
               </p>
 
-              <p className="text-gray-400 leading-relaxed">
+              <p className="text-zinc-600 dark:text-gray-400 leading-relaxed">
                 Currently exploring <strong>cloud fundamentals</strong> and learning how modern applications
                 scale in production environments.
               </p>
@@ -97,7 +98,7 @@ const Homepage = () => {
                 ].map((tag) => (
                   <span
                     key={tag}
-                    className="px-3 py-1 text-sm rounded-full bg-white/5 border border-white/10 text-gray-300 hover:border-blue-400 transition">
+                    className="px-3 py-1 text-sm rounded-full bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 text-zinc-600 dark:text-gray-300 hover:border-blue-500 transition">
                     {tag}
                   </span>
                 ))}
@@ -108,42 +109,52 @@ const Homepage = () => {
               </p>
               <div className="flex flex-col sm:flex-row sm:items-center gap-6 pt-4">
                 {/* Primary Actions */}
-                <div className="flex gap-4 justify-center md:justify-start">
-                  <a href="/Anas_Faaiz_Resume.pdf" download>
-                    <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-md font-medium transition-all">
+                <div className="flex flex-wrap gap-4 justify-center md:justify-start">
+                  <motion.a 
+                    href="/Anas_Faaiz_Resume.pdf" 
+                    download
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <button className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white px-6 py-2.5 rounded-full font-bold text-sm sm:text-base whitespace-nowrap shadow-lg shadow-blue-500/25 transition-all">
+                      <Download size={18} className="shrink-0" />
                       Download Resume
                     </button>
-                  </a>
+                  </motion.a>
 
-                  <a href="#contact">
-                    <button className="border border-blue-600 text-blue-400 hover:bg-blue-600/10 px-6 py-2.5 rounded-md font-medium transition-all">
+                  <motion.a 
+                    href="#contact"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <button className="group flex items-center gap-2 border-2 border-blue-600 dark:border-blue-500 text-blue-600 dark:text-blue-400 hover:bg-blue-600 hover:text-white transition-all px-6 py-2.5 rounded-full font-bold text-sm sm:text-base whitespace-nowrap">
                       Contact Me
+                      <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform shrink-0" />
                     </button>
-                  </a>
+                  </motion.a>
                 </div>
 
                 {/* Social Links */}
                 <div className="flex gap-3 sm:ml-6">
                   <SocialIcon
-                    imgSrc="https://cdn.simpleicons.org/discord/FFFFFF"
+                    imgSrc="https://cdn.simpleicons.org/discord"
                     alt="Discord"
                     link="https://discord.com/users/anasfaaiz"
                   />
                   <SocialIcon
-                    imgSrc="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg"
+                    imgSrc="https://cdn.simpleicons.org/linkedin"
                     alt="LinkedIn"
                     link="https://linkedin.com/in/anasfaaiz"
                   />
                   <SocialIcon
-                    imgSrc="https://cdn.simpleicons.org/x/FFFFFF"
+                    imgSrc="https://cdn.simpleicons.org/x"
                     alt="X (Twitter)"
                     link="https://twitter.com/anasfaaiz"
                   />
                   <SocialIcon
-                    imgSrc="https://cdn.simpleicons.org/github/FFFFFF"
+                    imgSrc="https://cdn.simpleicons.org/github"
                     alt="GitHub"
                     link="https://github.com/anasfaaiz"
-                    size={32}
                   />
 
                 </div>

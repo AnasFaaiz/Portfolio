@@ -9,7 +9,7 @@ export default function ExperienceSection() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="space-y-12"
+      className="space-y-6"
     >
       <h2 className="text-5xl font-extrabold text-center text-transparent
                        bg-clip-text bg-gradient-to-r
@@ -22,28 +22,28 @@ export default function ExperienceSection() {
           <div key={idx} className="flex gap-6">
             {/* Timeline line */}
             <div className="flex flex-col items-center">
-              <div className="w-3 h-3 rounded-full bg-purple-500 mt-2 shadow-md" />
+              <div className="w-3 h-3 rounded-full bg-blue-500 mt-2 shadow-md dark:bg-purple-500" />
               {idx !== experiences.length - 1 && (
-                <div className="w-px flex-1 bg-white/10 mt-1" />
+                <div className="w-px flex-1 bg-black/10 dark:bg-white/10 mt-1" />
               )}
             </div>
 
             {/* Content card */}
-            <div className="flex-1 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 md:p-8 space-y-4">
+            <div className="flex-1 bg-gray-50 dark:bg-white/5 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-2xl p-6 md:p-8 space-y-4 shadow-sm dark:shadow-none">
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-1">
-                <h3 className="text-lg md:text-xl font-semibold text-white">
+                <h3 className="text-lg md:text-xl font-bold text-gray-900 dark:text-white">
                   {exp.role}
                 </h3>
-                <span className="text-sm text-gray-400">
+                <span className="text-xs md:text-sm font-medium text-zinc-500 dark:text-gray-400">
                   {exp.duration} · {exp.location}
                 </span>
               </div>
 
-              <p className="text-sm text-gray-400">
+              <p className="text-sm font-semibold text-blue-600 dark:text-gray-400">
                 {exp.orgs}
               </p>
 
-              <ul className="list-disc list-inside space-y-2 text-sm text-gray-300 leading-relaxed">
+              <ul className="list-disc list-inside space-y-2 text-sm text-zinc-600 dark:text-gray-300 leading-relaxed">
                 {exp.points.map((point, i) => (
                   <li key={i}>{point}</li>
                 ))}

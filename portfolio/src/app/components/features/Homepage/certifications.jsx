@@ -44,7 +44,7 @@ export default function Certifications() {
   const [activeCert, setActiveCert] = useState(null);
 
   return (
-    <section className="relative px-6 py-20">
+    <section className="relative px-6 py-10">
       {/* Title */}
       <h2 className="text-4xl md:text-5xl font-extrabold text-center
                      text-transparent bg-clip-text
@@ -66,7 +66,7 @@ export default function Certifications() {
             <div
               className="relative w-full aspect-[16/10]
                          rounded-2xl overflow-hidden
-                         bg-black shadow-xl"
+                         bg-zinc-100 dark:bg-black shadow-xl"
             >
               <Image
                 src={cert.imageUrl}
@@ -113,13 +113,13 @@ export default function Certifications() {
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.95, opacity: 0 }}
               transition={{ type: 'spring', stiffness: 120 }}
-              className="relative bg-black rounded-2xl
-                         max-w-5xl w-full p-4"
+              className="relative bg-white dark:bg-black rounded-2xl
+                         max-w-5xl w-full p-4 border border-black/5 dark:border-white/10"
             >
               {/* Close */}
               <button
                 onClick={() => setActiveCert(null)}
-                className="absolute top-4 right-4 z-100 text-gray-300 hover:text-white"
+                className="absolute top-4 right-4 z-10 text-zinc-500 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
               >
                 <X size={22} />
               </button>
@@ -137,10 +137,10 @@ export default function Certifications() {
               {/* Footer */}
               <div className="flex justify-between items-center mt-4 px-2">
                 <div>
-                  <h4 className="text-white font-semibold">
+                  <h4 className="text-gray-900 dark:text-white font-bold">
                     {activeCert.title}
                   </h4>
-                  <p className="text-gray-400 text-sm">
+                  <p className="text-zinc-500 dark:text-gray-400 text-sm">
                     {activeCert.issuer} • {activeCert.date}
                   </p>
                 </div>

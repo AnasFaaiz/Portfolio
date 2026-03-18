@@ -22,7 +22,7 @@ export const skillMatrix = [
   },
   {
     name: 'Next.js',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-line.svg',
     category: 'Frontend',
   },
   {
@@ -62,11 +62,6 @@ export const skillMatrix = [
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg',
     category: 'Backend',
   },
-  {
-    name: 'Flask',
-    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flask/flask-original.svg',
-    category: 'Backend',
-  },
 
 
 
@@ -85,6 +80,11 @@ export const skillMatrix = [
   {
     name: 'SQLite',
     icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sqlite/sqlite-original.svg',
+    category: 'Database',
+  },
+  {
+    name: 'PostgreSQL',
+    icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg',
     category: 'Database',
   },
 

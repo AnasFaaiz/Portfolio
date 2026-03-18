@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 
 export default function ContactPage() {
   return (
-    <main className="relative px-4 py-10 bg-gradient-to-br from-gray-950 via-black to-gray-900 overflow-hidden flex items-center justify-center rounded-3xl top-20">
+    <main className="relative px-4 py-10 bg-white dark:bg-gray-950 transition-colors duration-500 overflow-hidden flex items-center justify-center rounded-3xl top-20">
       {/* Background glow blobs */}
-      <div className="absolute top-0 left-0 w-80 h-80 bg-purple-600/20 rounded-full blur-3xl animate-pulse z-0" />
-      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse z-0" />
+      <div className="absolute top-0 left-0 w-80 h-80 bg-purple-600/10 dark:bg-purple-600/20 rounded-full blur-3xl animate-pulse z-0" />
+      <div className="absolute bottom-0 right-0 w-96 h-96 bg-blue-500/10 dark:bg-blue-500/20 rounded-full blur-3xl animate-pulse z-0" />
 
       {/* Main container */}
       <motion.div
@@ -15,15 +15,15 @@ export default function ContactPage() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="relative z-10 w-full max-w-6xl bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl p-6 sm:p-10 md:p-14 space-y-12 text-white"
+        className="relative z-10 w-full max-w-6xl bg-gray-50/50 dark:bg-white/5 backdrop-blur-xl border border-black/5 dark:border-white/10 rounded-3xl shadow-xl dark:shadow-2xl p-6 sm:p-10 md:p-14 space-y-12 text-gray-900 dark:text-white"
       >
         <h1 className="text-4xl md:text-5xl font-extrabold text-center text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-500 drop-shadow-lg">
           Get in Touch
         </h1>
 
-        <p className="text-center text-gray-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
+        <p className="text-center text-zinc-600 dark:text-gray-400 max-w-2xl mx-auto text-sm sm:text-base leading-relaxed">
           Have an idea, opportunity, or just want to say hi?{" "}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400 font-semibold">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 to-blue-500 font-semibold">
             Drop me an email and let’s connect.
           </span>
         </p>
@@ -32,12 +32,12 @@ export default function ContactPage() {
         {/* Contact Info */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
           <ContactItem
-            icon={<User className="text-purple-300 w-6 h-6" />}
+            icon={<User className="text-purple-600 dark:text-purple-300 w-6 h-6" />}
             title="Name"
             value="Syed Anas Faaiz"
           />
           <ContactItem
-            icon={<Mail className="text-blue-300 w-6 h-6" />}
+            icon={<Mail className="text-blue-600 dark:text-blue-300 w-6 h-6" />}
             title="Email"
             value="syed.anasfaaiz@gmail.com"
             link="mailto:syed.anasfaaiz@gmail.com"
@@ -82,24 +82,24 @@ function ContactItem({ icon, title, value, link }) {
   return (
     <motion.div
       whileHover={{ scale: 1.03 }}
-      className="flex items-start gap-4 p-5 bg-white/5 rounded-xl hover:bg-white/10 border border-white/10 transition duration-300 shadow-md h-full"
+      className="flex items-start gap-4 p-5 bg-black/5 dark:bg-white/5 rounded-xl hover:bg-black/10 dark:hover:bg-white/10 border border-black/5 dark:border-white/10 transition duration-300 shadow-md h-full"
     >
-      <div className="w-12 h-12 flex items-center justify-center bg-gray-700 rounded-full shadow-inner shrink-0">
+      <div className="w-12 h-12 flex items-center justify-center bg-zinc-200 dark:bg-gray-700 rounded-full shadow-inner shrink-0">
         {icon}
       </div>
       <div className="flex-1 overflow-hidden">
-        <h2 className="text-sm font-medium text-gray-400">{title}</h2>
+        <h2 className="text-sm font-medium text-zinc-500 dark:text-gray-400">{title}</h2>
         {link ? (
           <a
             href={link}
-            className="text-base text-blue-400 font-semibold hover:underline break-words"
+            className="text-base text-blue-600 dark:text-blue-400 font-extrabold hover:underline break-words"
             target="_blank"
             rel="noopener noreferrer"
           >
             {value}
           </a>
         ) : (
-          <p className="text-base text-gray-100 font-semibold break-words">{value}</p>
+          <p className="text-base text-gray-900 dark:text-gray-100 font-extrabold break-words">{value}</p>
         )}
       </div>
     </motion.div>
@@ -114,18 +114,18 @@ export function SocialIcon({ imgSrc, alt, link, size = 32 }) {
       href={link}
       target="_blank"
       rel="noopener noreferrer"
-      className="flex flex-col items-center gap-2 group w-20"
+      className="flex flex-col items-center gap-1.5 group w-20"
     >
-      <div className="rounded-full bg-white/5 p-3 group-hover:bg-gradient-to-br from-purple-500 to-blue-500 transition-all duration-300 shadow-md border border-white/10">
+      <div className="rounded-xl bg-black/5 dark:bg-white/5 p-4 group-hover:bg-blue-600 dark:group-hover:bg-blue-600 transition-all duration-300 shadow-md border border-black/5 dark:border-white/10">
         <img
           src={imgSrc}
           alt={alt}
           width={size}
           height={size}
-          className="object-contain transition-transform duration-300 group-hover:scale-110"
+          className="object-contain transition-all duration-300 group-hover:scale-110 brightness-0 dark:invert group-hover:brightness-0 group-hover:invert"
         />
       </div>
-      <p className="text-xs text-gray-400 group-hover:text-white transition-colors duration-300 font-medium">
+      <p className="text-[10px] sm:text-xs text-zinc-500 dark:text-gray-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors duration-300 font-bold uppercase tracking-wider">
         {alt}
       </p>
     </motion.a>
