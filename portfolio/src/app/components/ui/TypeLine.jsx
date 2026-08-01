@@ -37,6 +37,8 @@ export default function TypeLine({
       return;
     }
 
+    if (list.length === 0) return;
+
     const word = list[index % list.length];
     const done = text === word;
     const empty = text === '';
