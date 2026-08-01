@@ -19,8 +19,12 @@ import { useReducedMotion } from 'framer-motion';
    Tuning knobs are all at the top of Cluster().
    ============================================================ */
 
-/* Evenly spaced points on a sphere (Fibonacci lattice).
-   Random placement clumps; this doesn't. */
+/**
+ * Generates evenly distributed Cartesian coordinates on the surface of a sphere.
+ * @param {number} count - The number of points to generate.
+ * @param {number} radius - The sphere's radius.
+ * @returns {number[][]} The generated points as `[x, y, z]` coordinates.
+ */
 function spherePoints(count, radius) {
   const golden = Math.PI * (3 - Math.sqrt(5));
   return Array.from({ length: count }, (_, i) => {
@@ -31,6 +35,11 @@ function spherePoints(count, radius) {
   });
 }
 
+/**
+ * Render the animated 3D cluster and its surrounding nodes.
+ * @param {boolean} still - Whether to disable pointer-following and shell rotation.
+ * @return {JSX.Element} The rendered cluster scene.
+ */
 function Cluster({ still = false }) {
   /* --- tuning --- */
   const FOLLOW = 0.45;   // how far the cluster turns toward the cursor
@@ -101,6 +110,10 @@ function Cluster({ still = false }) {
   );
 }
 
+/**
+ * Render the hero scene with animated lighting, geometry, and reduced-motion support.
+ * @return {JSX.Element} The transparent 3D hero scene.
+ */
 export default function HeroScene() {
   const reduce = useReducedMotion();
 

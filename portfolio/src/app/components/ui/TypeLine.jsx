@@ -3,16 +3,17 @@
 import { useEffect, useState } from 'react';
 import { useReducedMotion } from 'framer-motion';
 
-/* ============================================================
-   TYPE LINE
-   Types a phrase out, holds it, deletes it, moves to the next.
-   Pass a single string to type it once and stop.
-
-   <TypeLine words={['Full-Stack Engineer', 'Automation Builder']} />
-
-   Speeds are in ms. Tweak them at the call site if you want a
-   snappier or lazier feel.
-   ============================================================ */
+/**
+ * Animates supplied phrases by typing, pausing, deleting, and advancing between them.
+ * Displays the first phrase without animation when reduced motion is preferred.
+ * @param {string|string[]} words - Phrase or phrases to display.
+ * @param {number} typeSpeed - Delay between typed characters, in milliseconds.
+ * @param {number} deleteSpeed - Delay between deleted characters, in milliseconds.
+ * @param {number} holdTime - Duration to display each completed phrase, in milliseconds.
+ * @param {string} className - CSS class name applied to the component.
+ * @param {boolean} loop - Whether to restart after displaying the final phrase.
+ * @return {JSX.Element} The animated phrase display.
+ */
 
 export default function TypeLine({
   words = [],

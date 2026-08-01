@@ -2,20 +2,13 @@
 
 import Reveal from './Reveal';
 
-/* ============================================================
-   SECTION HEADER
-   Every section opens the same way: a mono eyebrow, a big
-   display heading with one word emphasised, a short line of
-   context, and a hairline rule. Consistency here is what makes
-   the page feel designed rather than assembled.
-
-   <SectionHeader
-     eyebrow="selected work"
-     title="Things I"
-     accent="built"
-     note="Six projects, all of them shipped or shippable."
-   />
-   ============================================================ */
+/**
+ * Renders an animated section heading with an eyebrow label, title, optional accent, note, and divider.
+ * @param {string} eyebrow - The label displayed above the title.
+ * @param {string} title - The main section title.
+ * @param {string} [accent] - Optional emphasized text appended to the title.
+ * @param {string} [note] - Optional descriptive text displayed below the title.
+ */
 
 export default function SectionHeader({ eyebrow, title, accent, note }) {
   return (

@@ -4,17 +4,9 @@ import SectionHeader from '../../ui/SectionHeader';
 import Reveal from '../../ui/Reveal';
 import { skills } from '../../../data/site';
 
-/* ============================================================
-   SKILLS — infinite marquee, three rails.
-
-   The trick: render each row's list TWICE inside one flex track,
-   then animate the track by -50%. When it finishes, the second
-   copy is sitting exactly where the first started, so the loop
-   is invisible. No JS, no measuring, no resize listeners.
-
-   Speed is set per row via the --speed CSS variable.
-   Hover anywhere on a row to pause it (see globals.css).
-   ============================================================ */
+/**
+ * Render the skills toolbox section with animated skill rows.
+ */
 
 export default function Skills() {
   return (
@@ -42,6 +34,12 @@ export default function Skills() {
   );
 }
 
+/**
+ * Render a horizontally scrolling row of skill chips.
+ * @param {string[]} items - The skill labels to display.
+ * @param {boolean} [reverse=false] - Whether the row scrolls in reverse.
+ * @param {number} [speed=40] - The animation duration in seconds.
+ */
 function Rail({ items, reverse = false, speed = 40 }) {
   return (
     <div className="marquee-wrap edge-fade w-full overflow-hidden">
@@ -62,6 +60,12 @@ function Rail({ items, reverse = false, speed = 40 }) {
   );
 }
 
+/**
+ * Render a styled skill label chip.
+ * @param {Object} props - The component properties.
+ * @param {string} props.label - The skill name displayed in the chip.
+ * @returns {JSX.Element} The rendered skill chip.
+ */
 function Chip({ label }) {
   return (
     <span className="glass group flex shrink-0 items-center gap-3 rounded-2xl px-6 py-4 transition-colors duration-300 hover:border-ice/30">

@@ -9,14 +9,9 @@ import SectionHeader from '../../ui/SectionHeader';
 import { RevealGroup, RevealItem } from '../../ui/Reveal';
 import { certifications } from '../../../data/site';
 
-/* ============================================================
-   CERTIFICATIONS
-
-   The glow: each card is a 1px-padded wrapper. A radial gradient
-   sits in that padding and follows the cursor, so the border
-   lights up under the pointer instead of the whole card turning
-   blue. Click a card to open the full certificate.
-   ============================================================ */
+/**
+ * Render the certifications section with grouped certification cards and a certificate preview modal.
+ */
 
 export default function Certifications() {
   const [active, setActive] = useState(null);
@@ -52,6 +47,14 @@ export default function Certifications() {
   );
 }
 
+/**
+ * Render a labeled responsive grid of certification cards.
+ * @param {Object} props - The group properties.
+ * @param {string} props.label - The heading displayed above the cards.
+ * @param {Array} props.items - The certifications to display.
+ * @param {Function} props.onSelect - Callback invoked when a certification is selected.
+ * @param {string} [props.className=''] - Additional CSS classes for the group container.
+ */
 function Group({ label, items, onSelect, className = '' }) {
   return (
     <div className={className}>
@@ -70,6 +73,11 @@ function Group({ label, items, onSelect, className = '' }) {
   );
 }
 
+/**
+ * Display an interactive certification card with certificate preview and credential link.
+ * @param {Object} cert - Certification details shown on the card.
+ * @param {Function} onSelect - Callback invoked with the certification when the card is selected.
+ */
 function GlowCard({ cert, onSelect }) {
   const ref = useRef(null);
   const [pos, setPos] = useState({ x: 0, y: 0 });
@@ -145,6 +153,12 @@ function GlowCard({ cert, onSelect }) {
   );
 }
 
+/**
+ * Display a certificate preview modal with metadata and an optional credential link.
+ * @param {Object} cert - The certification details to display.
+ * @param {Function} onClose - Callback invoked when the modal is dismissed.
+ * @returns {JSX.Element} The certificate preview modal.
+ */
 function CertModal({ cert, onClose }) {
   return (
     <motion.div

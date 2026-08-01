@@ -15,7 +15,15 @@ import { motion, useReducedMotion } from 'framer-motion';
    child — the group staggers them automatically.
    ============================================================ */
 
-const EASE = [0.22, 1, 0.36, 1]; // slow-out, no bounce
+const EASE = [0.22, 1, 0.36, 1]; /**
+ * Reveals content when it enters the viewport with optional horizontal and vertical movement.
+ * @param {number} [y=28] - The initial vertical offset in pixels.
+ * @param {number} [x=0] - The initial horizontal offset in pixels.
+ * @param {number} [amount=0.2] - The fraction of the element that must be visible to trigger the animation.
+ * @param {boolean} [once=true] - Whether the animation should trigger only once.
+ * @param {string} [as='div'] - The element type to render.
+ * @return {JSX.Element} The animated content element.
+ */
 
 export default function Reveal({
   children,
@@ -44,7 +52,13 @@ export default function Reveal({
   );
 }
 
-/* Parent: fires once, then releases its children in sequence. */
+/**
+ * Coordinates child reveal animations with a viewport-triggered stagger.
+ * @param {number} stagger - The delay between successive child animations, in seconds.
+ * @param {number} amount - The portion of the group that must enter the viewport to trigger the animation.
+ * @param {boolean} once - Whether the animation should trigger only once.
+ * @return {JSX.Element} The motion container wrapping the children.
+ */
 export function RevealGroup({
   children,
   className = '',
@@ -68,7 +82,13 @@ export function RevealGroup({
   );
 }
 
-/* Child of RevealGroup. Takes no timing props — the group owns that. */
+/**
+ * Render an item for a `RevealGroup` with opacity and optional vertical reveal animation.
+ * @param {React.ReactNode} children - The content to render.
+ * @param {string} className - Additional CSS class names.
+ * @param {number} y - The initial vertical offset in pixels.
+ * @param {string} as - The HTML element type to render.
+ */
 export function RevealItem({ children, className = '', y = 24, as = 'div' }) {
   const reduce = useReducedMotion();
   const MotionTag = motion[as] || motion.div;
