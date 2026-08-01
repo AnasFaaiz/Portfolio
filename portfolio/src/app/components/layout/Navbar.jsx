@@ -1,130 +1,131 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sun, Moon, ArrowUpRight } from 'lucide-react';
-import { useTheme } from "next-themes";
+import { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import { Menu, X } from 'lucide-react';
 
-const ThemeToggle = () => {
-  const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
+import { navLinks, profile } from '../../data/site';
 
-  useEffect(() => setMounted(true), []);
-  if (!mounted) return null;
+export default function Navbar() {
+  const [active, setActive] = useState(navLinks[0].id);
+  const [solid, setSolid] = useState(false);
+  const [open, setOpen] = useState(false);
 
-  return (
-    <button
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      className="p-2.5 rounded-full bg-white/5 border border-black/5 dark:border-white/10 text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 hover:border-blue-500/50 transition-all duration-300 shadow-sm"
-      aria-label="Toggle Theme"
-    >
-      {theme === 'dark' ? <Sun size={18} strokeWidth={2.5} /> : <Moon size={18} strokeWidth={2.5} />}
-    </button>
-  );
-};
-
-const navItems = [
-  { name: "Home", href: "/Homepage" },
-  { name: "Projects", href: "/Projects" },
-  { name: "Certifications", href: "/Certifications" },
-  { name: "Contact", href: "/Homepage#contact" },
-];
-
-const Navbar = () => {
-  const [pathname, setPathname] = useState('');
-  const [isOpen, setIsOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
+  /* Swap to the solid background once the hero is behind us */
   useEffect(() => {
-    setPathname(window.location.pathname);
-    const handleScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+    const onScroll = () => setSolid(window.scrollY > 40);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  /* Scroll spy */
+  useEffect(() => {
+    const sections = navLinks
+      .map((l) => document.getElementById(l.id))
+      .filter(Boolean);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visible = entries
+          .filter((e) => e.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) setActive(visible.target.id);
+      },
+      {
+        /* Only count a section once it reaches the middle band of the screen */
+        rootMargin: '-45% 0px -45% 0px',
+        threshold: [0, 0.25, 0.5, 1],
+      }
+    );
+
+    sections.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
   }, []);
 
   return (
-    <nav className={`fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-full max-w-4xl px-4 transition-all duration-500 ${scrolled ? 'top-4' : 'top-6'}`}>
-      <div className="relative">
-        <div className="relative z-20 h-16 flex items-center justify-between rounded-full bg-white/80 dark:bg-slate-950/80 backdrop-blur-xl border border-slate-200/50 dark:border-white/10 px-6 sm:px-8 shadow-[0_8px_32px_rgba(0,0,0,0.05)] dark:shadow-[0_8px_32px_rgba(0,0,0,0.2)] transition-all duration-300">
-          {/* Logo */}
-          <Link href="/Homepage" className="flex items-center gap-2 group">
-            <div className="w-8 h-8 rounded-full bg-blue-600 flex items-center justify-center text-white font-black text-xs shadow-lg shadow-blue-500/50 group-hover:scale-110 transition-transform">AF</div>
-            <span className="text-xl font-black tracking-tighter text-slate-800 dark:text-white group-hover:text-blue-600 transition-colors">SYED.</span>
-          </Link>
+    <header
+      className={`fixed inset-x-0 top-0 z-[80] transition-all duration-500 ${
+        solid ? 'border-b border-line/[0.06] bg-void/70 backdrop-blur-xl' : 'bg-transparent'
+      }`}
+    >
+      <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4">
+        {/* Wordmark */}
+        <a
+          href="/#top"
+          className="font-mono text-[13px] tracking-[0.2em] text-white"
+          aria-label="Back to top"
+        >
+          anas<span className="text-signal">.</span>faaiz
+        </a>
 
-          {/* Desktop Nav Links */}
-          <div className="hidden lg:flex items-center gap-1">
-            <ul className="flex items-center gap-1 text-[11px] font-black uppercase tracking-widest">
-              {navItems.map((item) => {
-                const isActive = pathname === item.href || (typeof window !== 'undefined' && window.location.hash === item.href.split('#')[1]);
-                return (
-                  <li key={item.name}>
-                    <a
-                      href={item.href}
-                      className={`relative px-4 py-2 flex items-center gap-1.5 transition-colors duration-300 rounded-full group ${isActive ? 'text-blue-600 dark:text-blue-400' : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'}`}
-                    >
-                      {isActive && (
-                        <motion.span
-                          layoutId="active-pill"
-                          className="absolute inset-0 bg-blue-500/10 dark:bg-blue-400/10 border border-blue-500/20 rounded-full shadow-[0_0_20px_rgba(59,130,246,0.1)]"
-                          transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                        />
-                      )}
-                      <span className="relative z-10">{item.name}</span>
-                    </a>
-                  </li>
-                );
-              })}
-            </ul>
-            
-            <div className="w-px h-6 bg-slate-200 dark:bg-white/10 mx-4" />
-            <ThemeToggle />
-          </div>
+        {/* Desktop links */}
+        <ul className="hidden items-center gap-1 md:flex">
+          {navLinks.map((link) => (
+            <li key={link.id} className="relative">
+              <a
+                href={`/#${link.id}`}
+                className={`relative z-10 block px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] transition-colors ${
+                  active === link.id ? 'text-void' : 'text-muted hover:text-white'
+                }`}
+              >
+                {link.label}
+              </a>
 
-          {/* Mobile Actions */}
-          <div className="lg:hidden flex items-center gap-3">
-            <ThemeToggle />
-            <button 
-              onClick={() => setIsOpen(!isOpen)} 
-              className="p-2.5 rounded-full bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-white hover:text-blue-600 transition-all duration-300"
-            >
-              {isOpen ? <X size={20} strokeWidth={2.5} /> : <Menu size={20} strokeWidth={2.5} />}
-            </button>
-          </div>
+              {/* One pill, shared across links — framer-motion slides it */}
+              {active === link.id && (
+                <motion.span
+                  layoutId="nav-pill"
+                  transition={{ type: 'spring', stiffness: 380, damping: 32 }}
+                  className="absolute inset-0 rounded-full bg-white"
+                />
+              )}
+            </li>
+          ))}
+        </ul>
+
+        <div className="flex items-center gap-2">
+          <a
+            href={profile.resume}
+            download
+            className="hidden rounded-full border border-line/15 px-5 py-2 font-mono text-[11px] uppercase tracking-[0.16em] text-white transition-colors hover:border-ice/40 hover:text-ice sm:block"
+          >
+            Resume
+          </a>
+
+          <button
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
+            className="rounded-full p-2 text-white md:hidden"
+          >
+            {open ? <X size={20} /> : <Menu size={20} />}
+          </button>
         </div>
+      </nav>
 
-        {/* Mobile Menu Dropdown */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95, y: 10 }}
-              animate={{ opacity: 1, scale: 1, y: 0 }}
-              exit={{ opacity: 0, scale: 0.95, y: 10 }}
-              className="lg:hidden absolute top-[4.5rem] left-0 right-0 z-10"
-            >
-              <div className="bg-white/95 dark:bg-slate-950/95 backdrop-blur-2xl border border-slate-200/50 dark:border-white/10 rounded-[2.5rem] shadow-2xl overflow-hidden p-3">
-                <ul className="flex flex-col gap-1">
-                  {navItems.map((item) => (
-                    <li key={item.name}>
-                      <a
-                        href={item.href}
-                        onClick={() => setIsOpen(false)}
-                        className="flex items-center justify-between px-6 py-4 rounded-3xl bg-slate-50/50 dark:bg-white/5 hover:bg-blue-500/10 dark:hover:bg-blue-400/10 text-slate-700 dark:text-slate-300 hover:text-blue-600 dark:hover:text-blue-400 text-sm font-black uppercase tracking-widest transition-all"
-                      >
-                        {item.name}
-                        <ArrowUpRight size={16} className="opacity-30" />
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </nav>
+      {/* Mobile drawer */}
+      {open && (
+        <motion.ul
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: 'auto' }}
+          className="overflow-hidden border-t border-line/[0.06] bg-void/95 px-6 pb-6 pt-2 backdrop-blur-xl md:hidden"
+        >
+          {navLinks.map((link) => (
+            <li key={link.id}>
+              <a
+                href={`/#${link.id}`}
+                onClick={() => setOpen(false)}
+                className={`block border-b border-line/[0.05] py-4 font-mono text-sm uppercase tracking-[0.16em] ${
+                  active === link.id ? 'text-ice' : 'text-muted'
+                }`}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </motion.ul>
+      )}
+    </header>
   );
-};
-
-export default Navbar;
+}

@@ -1,30 +1,187 @@
+/* ============================================================
+   TAILWIND v4
+   No config file needed. Everything lives here.
+   `@theme` turns each variable into a real utility class:
+     --color-void  -> bg-void, text-void, border-void
+     --font-mono   -> font-mono
+   ============================================================ */
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #111827;
+@theme {
+  /* ---- PALETTE ----------------------------------------------
+     Change these and the whole site re-themes.
+     ---------------------------------------------------------- */
+  --color-void:   #07070c;   /* page background               */
+  --color-panel:  #0e0f17;   /* cards, surfaces               */
+  --color-panel2: #131522;   /* raised surfaces               */
+  --color-ice:    #8fb8ff;   /* primary accent                */
+  --color-beam:   #4c6fff;   /* glows, 3D lighting            */
+  --color-signal: #ff7a45;   /* status only - never decor     */
+  --color-muted:  #7a809a;   /* secondary text                */
+  --color-line:   #ffffff;   /* borders; always with /opacity */
+  --shadow-lift: 0 30px 80px -40px rgb(0 0 0 / 0.9);
+  /* ---- TYPE -------------------------------------------------
+     The --ff-* vars are set by next/font in layout.js.
+     Separate names so they don't collide with these.
+     ---------------------------------------------------------- */
+  --font-display: var(--ff-display), ui-sans-serif, system-ui, sans-serif;
+  --font-body:    var(--ff-body),    ui-sans-serif, system-ui, sans-serif;
+  --font-mono:    var(--ff-mono),    ui-monospace, monospace;
+
+  /* ---- MOTION ---------------------------------------------- */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1);
+  --animate-bob: bob 6s ease-in-out infinite;
+
+  @keyframes bob {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-8px); }
+  }
 }
 
-.dark {
-  --background: #030712;
-  --foreground: #f9fafb;
+/* ============================================================
+   BASE
+   ============================================================ */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background: var(--color-void);
+  }
+
+  body {
+    background: var(--color-void);
+    color: #e8eaf2;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-beam);
+    color: #fff;
+  }
+
+  /* Visible keyboard focus everywhere */
+  :focus-visible {
+    outline: 2px solid var(--color-ice);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  /* Slim scrollbar */
+  ::-webkit-scrollbar { width: 10px; }
+  ::-webkit-scrollbar-track { background: var(--color-void); }
+  ::-webkit-scrollbar-thumb {
+    background: #1c1f30;
+    border-radius: 999px;
+    border: 3px solid var(--color-void);
+  }
+  ::-webkit-scrollbar-thumb:hover { background: #2a2e45; }
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* ============================================================
+   CUSTOM UTILITIES
+   v4 uses `@utility` instead of @layer components.
+   ============================================================ */
+
+/* Frosted panel - the base look for every card */
+@utility glass {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.045),
+    rgba(255, 255, 255, 0.015)
+  );
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
-@variant dark (&:where(.dark, .dark *));
-
-html{
-  scroll-behavior: smooth;
+/* Mono eyebrow above every section heading */
+@utility eyebrow {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-muted);
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: inherit;
+/* Fades the left/right edges of a horizontal rail */
+@utility edge-fade {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 8%, #000 92%, transparent);
+}
+
+/* Faint grid - hero only */
+@utility grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000, transparent 75%);
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000, transparent 75%);
+}
+
+/* ============================================================
+   MARQUEE (skills rail)
+   The track holds the list twice; translating -50% loops it
+   seamlessly with no JS and no measuring.
+   ============================================================ */
+@keyframes marquee-left {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@keyframes marquee-right {
+  from { transform: translateX(-50%); }
+  to   { transform: translateX(0); }
+}
+
+/* Plain classes, not @utility: these need to compose with each
+   other and with a descendant selector, which utilities can't. */
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marquee-left var(--speed, 40s) linear infinite;
+}
+
+.marquee-track.reverse {
+  animation-name: marquee-right;
+}
+
+/* Pause on hover so a visitor can read a chip */
+.marquee-wrap:hover .marquee-track {
+  animation-play-state: paused;
+}
+
+/* Blinking caret for the typing headline */
+@keyframes caret-blink {
+  0%, 45%   { opacity: 1; }
+  55%, 100% { opacity: 0; }
+}
+.caret {
+  animation: caret-blink 1s steps(1) infinite;
+}
+
+/* Slow pulse on the "open to work" dot */
+@keyframes status-pulse {
+  0%, 100% { opacity: 1;    transform: scale(1); }
+  50%      { opacity: 0.45; transform: scale(0.82); }
+}
+.status-dot {
+  animation: status-pulse 2.4s ease-in-out infinite;
+}
+
+/* ============================================================
+   ACCESSIBILITY - respect the OS setting
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+
+  .marquee-track,
+  .caret,
+  .status-dot {
+    animation: none !important;
+  }
+
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
 }
