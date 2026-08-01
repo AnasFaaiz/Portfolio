@@ -6,23 +6,6 @@ import { Menu, X } from 'lucide-react';
 
 import { navLinks, profile } from '../../data/site';
 
-/* ============================================================
-   NAVBAR
-
-   Two behaviours worth knowing about:
-
-   1. Scroll spy — an IntersectionObserver watches every section
-      and marks the one nearest the middle of the screen as
-      active. The pill behind the active link is a single shared
-      framer-motion layout element, so it slides between links
-      instead of fading in and out.
-
-   2. Smooth scroll — handled by `scroll-behavior: smooth` in
-      globals.css, so plain <a href="#id"> is all that's needed.
-      Each section has `scroll-mt-28` so headings don't end up
-      hidden behind this bar.
-   ============================================================ */
-
 export default function Navbar() {
   const [active, setActive] = useState(navLinks[0].id);
   const [solid, setSolid] = useState(false);
@@ -69,7 +52,7 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-[1400px] items-center justify-between px-6 py-4">
         {/* Wordmark */}
         <a
-          href="#top"
+          href="/#top"
           className="font-mono text-[13px] tracking-[0.2em] text-white"
           aria-label="Back to top"
         >
@@ -81,7 +64,7 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <li key={link.id} className="relative">
               <a
-                href={`#${link.id}`}
+                href={`/#${link.id}`}
                 className={`relative z-10 block px-4 py-2 font-mono text-[11px] uppercase tracking-[0.16em] transition-colors ${
                   active === link.id ? 'text-void' : 'text-muted hover:text-white'
                 }`}
@@ -131,7 +114,7 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <li key={link.id}>
               <a
-                href={`#${link.id}`}
+                href={`/#${link.id}`}
                 onClick={() => setOpen(false)}
                 className={`block border-b border-line/[0.05] py-4 font-mono text-sm uppercase tracking-[0.16em] ${
                   active === link.id ? 'text-ice' : 'text-muted'
