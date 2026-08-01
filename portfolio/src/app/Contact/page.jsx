@@ -126,29 +126,3 @@ export default function ContactPage() {
   );
 }
 
-export function SocialIcon({ imgSrc, alt, link, size = 20, icon: Icon }) {
-  return (
-    <motion.a
-      whileHover={{ y: -3 }}
-      whileTap={{ scale: 0.95 }}
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label={alt}
-      className="rounded-2xl border border-line/10 bg-white/[0.03] p-3 text-muted transition-colors hover:border-ice/40 hover:text-ice"
-    >
-      {Icon ? (
-        <Icon size={size} strokeWidth={2.2} />
-      ) : (
-        <img
-          src={imgSrc}
-          alt={alt}
-          width={size}
-          height={size}
-          className="object-contain invert"
-        />
-      )}
-    </motion.a>
-  );
-}
- 
