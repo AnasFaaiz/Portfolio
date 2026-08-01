@@ -28,7 +28,6 @@ module.exports = {
       },
       boxShadow: {
         glow: '0 0 0 1px rgb(76 111 255 / 0.35), 0 20px 60px -20px rgb(76 111 255 / 0.55)',
-        lift: '0 30px 80px -40px rgb(0 0 0 / 0.9)',
       },
       keyframes: {
         bob: {

@@ -19,7 +19,7 @@
   --color-signal: #ff7a45;   /* status only - never decor     */
   --color-muted:  #7a809a;   /* secondary text                */
   --color-line:   #ffffff;   /* borders; always with /opacity */
-
+  --shadow-lift: 0 30px 80px -40px rgb(0 0 0 / 0.9);
   /* ---- TYPE -------------------------------------------------
      The --ff-* vars are set by next/font in layout.js.
      Separate names so they don't collide with these.
