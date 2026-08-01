@@ -6,7 +6,7 @@ import Skills from '../components/features/Homepage/Skills';
 import Projects from '../components/features/Homepage/Projects';
 import Experience from '../components/features/Homepage/Experience';
 import Certifications from '../components/features/Homepage/Certifications';
-import ContactPage from '../Contact/page';
+import Contact from '../components/features/Homepage/Contact';
 
 
 export default function Homepage() {
@@ -20,7 +20,7 @@ export default function Homepage() {
         <Skills />        {/* #stack       */}
         <Experience />    {/* #path        */}
         <Certifications />{/* #credentials */}
-        <ContactPage />   {/* #contact     */}
+        <Contact />   {/* #contact     */}
       </main>
     </div>
   );
