@@ -10,6 +10,10 @@ import { RevealGroup, RevealItem } from '../../ui/Reveal';
 import { projects, profile } from '../../../data/site';
 
 
+/**
+ * Render the projects section with featured and additional project cards.
+ * @returns {JSX.Element} The rendered projects section.
+ */
 export default function Projects() {
   const [stats, setStats] = useState({}); // { repoName: { stars, forks } }
 
@@ -81,9 +85,13 @@ export default function Projects() {
   );
 }
 
-/* ------------------------------------------------------------
-   CARD
-   ------------------------------------------------------------ */
+/**
+ * Render a project card with its imagery, technology tags, details, statistics, and links.
+ * @param {Object} project - Project details displayed in the card.
+ * @param {Object} [stat] - Optional GitHub star and fork statistics.
+ * @param {boolean} [large=false] - Whether to use the larger featured-card layout.
+ * @returns {JSX.Element} The rendered project card.
+ */
 function ProjectCard({ project, stat, large = false }) {
   const [imgFailed, setImgFailed] = useState(false);
 

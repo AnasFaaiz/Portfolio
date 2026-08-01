@@ -4,12 +4,9 @@ import SectionHeader from '../../ui/SectionHeader';
 import Reveal from '../../ui/Reveal';
 import { experience } from '../../../data/site';
 
-/* ============================================================
-   EXPERIENCE
-   A real timeline, so a vertical rule and dots are earned here —
-   the order carries information. Entries slide in from the left
-   as they enter the viewport.
-   ============================================================ */
+/**
+ * Render the work-experience timeline section.
+ */
 
 export default function Experience() {
   return (

@@ -31,6 +31,9 @@ const rise = (delay) => ({
   transition: { duration: 0.8, delay, ease: EASE },
 });
 
+/**
+ * Renders the portfolio landing section with profile details, actions, social links, and an animated 3D scene.
+ */
 export default function Hero() {
   return (
     <section className="relative min-h-[92vh] w-full overflow-hidden">
@@ -151,6 +154,13 @@ export default function Hero() {
   );
 }
 
+/**
+ * Render an accessible external link with an icon or other child content.
+ * @param {string} href - The destination URL.
+ * @param {string} label - The accessible label for the link.
+ * @param {React.ReactNode} children - The content displayed inside the link.
+ * @return {JSX.Element} The external link element.
+ */
 function IconLink({ href, label, children }) {
   return (
     <a

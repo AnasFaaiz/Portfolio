@@ -2,21 +2,16 @@
 
 import { useRef, useState } from 'react';
 
-/* ============================================================
-   TILT CARD
-   3D tilt toward the cursor + a glare highlight that tracks it.
-   Written by hand instead of pulling in vanilla-tilt so there's
-   no extra dependency and you can tune it in one place.
-
-   How it works:
-   1. On mouse move, work out where the pointer is inside the card
-      as a 0..1 pair.
-   2. Map that to a small rotateX / rotateY.
-   3. Move a radial-gradient overlay to the same spot for the glare.
-
-   Turns itself off on touch devices and when the user prefers
-   reduced motion — a tilting card is useless without a cursor.
-   ============================================================ */
+/**
+ * Renders content in a cursor-responsive 3D card with optional glare.
+ * @param {React.ReactNode} children - The content displayed inside the card.
+ * @param {string} [className=''] - Additional CSS classes for the card.
+ * @param {number} [max=9] - Maximum tilt angle in degrees.
+ * @param {number} [scale=1.02] - Hover scale applied to the card.
+ * @param {boolean} [glare=true] - Whether to display the cursor-tracking glare.
+ * @param {string} [glareColor='143, 184, 255'] - Glare color as comma-separated RGB values.
+ * @returns {JSX.Element} The rendered tilt card.
+ */
 
 export default function TiltCard({
   children,
