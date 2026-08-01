@@ -5,26 +5,6 @@ import { Canvas, useFrame } from '@react-three/fiber';
 import { Float, MeshDistortMaterial } from '@react-three/drei';
 import { useReducedMotion } from 'framer-motion';
 
-/* ============================================================
-   HERO SCENE  (client only — see Hero.jsx for the dynamic import)
-
-   What's on screen:
-     · a soft distorted core        → the thing being built
-     · a wireframe shell around it  → the system around the thing
-     · nodes on an outer sphere     → the services it talks to
-
-   The whole cluster eases toward the cursor. Nothing snaps —
-   every rotation is lerped so it feels weighted, not twitchy.
-
-   Tuning knobs are all at the top of Cluster().
-   ============================================================ */
-
-/**
- * Generates evenly distributed Cartesian coordinates on the surface of a sphere.
- * @param {number} count - The number of points to generate.
- * @param {number} radius - The sphere's radius.
- * @returns {number[][]} The generated points as `[x, y, z]` coordinates.
- */
 function spherePoints(count, radius) {
   const golden = Math.PI * (3 - Math.sqrt(5));
   return Array.from({ length: count }, (_, i) => {
@@ -66,7 +46,7 @@ function Cluster({ still = false }) {
   return (
     <group ref={group}>
       {/* Core — the soft blob. Distort/speed control how liquid it looks. */}
-      <Float speed={1.4} rotationIntensity={0.35} floatIntensity={0.9}>
+      <Float speed={still ? 0 : 1.4} rotationIntensity={still ? 0 : 0.35} floatIntensity={still ? 0 : 0.9}>
         <mesh>
           <icosahedronGeometry args={[1.35, 24]} />
           <MeshDistortMaterial
@@ -75,8 +55,8 @@ function Cluster({ still = false }) {
             emissiveIntensity={0.6}
             roughness={0.18}
             metalness={0.65}
-            distort={0.38}
-            speed={1.6}
+            distort={still ? 0 : 0.38}
+            speed={still ? 0 : 1.6}
           />
         </mesh>
       </Float>
@@ -94,7 +74,7 @@ function Cluster({ still = false }) {
 
       {/* Nodes — small emissive dots on the outer sphere */}
       {nodes.map((pos, i) => (
-        <Float key={i} speed={1 + (i % 4) * 0.25} floatIntensity={0.6}>
+        <Float key={i} speed={still ? 0 : 1 + (i % 4) * 0.25} floatIntensity={still ? 0 : 0.6}>
           <mesh position={pos}>
             <sphereGeometry args={[0.045, 12, 12]} />
             <meshStandardMaterial
