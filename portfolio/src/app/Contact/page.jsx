@@ -1,11 +1,7 @@
 "use client";
 
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Github, Linkedin, Mail, MessageSquare } from 'lucide-react';
-
-import SectionHeader from '../components/ui/SectionHeader';
-import Reveal, { RevealGroup, RevealItem } from '../components/ui/Reveal';
-import { profile } from '../data/site';
+import Navbar from '../components/layout/Navbar';
+import Contact from '../components/features/Homepage/Contact';
 
 const channels = [
   {
@@ -40,6 +36,12 @@ const channels = [
 
 export default function ContactPage() {
   return (
+    <>
+      <Navbar />
+      <main className="pt-28">
+        <Contact />
+      </main>
+    </>
   );
 }
 
