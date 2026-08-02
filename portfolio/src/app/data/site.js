@@ -14,13 +14,13 @@ export const profile = {
   blurb:
     'Final-year CS student who ships. I build full-stack apps, wire up automation that removes the boring parts, and put LLMs to work on problems that actually need them.',
   status: 'Open to internships and junior roles · Remote friendly',
-  resume: '/Syed%20Anas%20Faaiz_Resume.pdf',
+  resume: '/Anas_Faaiz_Resume.pdf',
   photo: '/profile.jpeg',
   email: 'syed.anasfaaiz@gmail.com',
   github: 'https://github.com/AnasFaaiz',
   githubUser: 'AnasFaaiz',
-  linkedin: 'https://linkedin.com/in/anasfaaiz',
-  x: 'https://twitter.com/anasfaaiz',
+  linkedin: 'https://linkedin.com/in/syed-mohammad-anas-faaiz-838602288',
+  x: 'https://x.com/Kage_Kazuto_',
   discord: 'https://discord.com/users/anasfaaiz',
 };
 
@@ -101,7 +101,7 @@ export const projects = [
     image: '',
     tech: ['Python', 'Gemma', 'LoRA', 'PyTorch'],
     live: '',
-    code: 'https://github.com/AnasFaaiz',
+    code: 'https://github.com/AnasFaaiz/ACE',
     featured: false,
   },
 ];
